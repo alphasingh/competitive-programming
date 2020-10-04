@@ -12,7 +12,8 @@ class Solution:
         print(combination, in_degree, out_degree)
         return in_degree == out_degree
 
-    def maximum_requests(self, n: int, requests: [[int]]) -> int:
+    @staticmethod
+    def maximum_requests(n: int, requests: [[int]]) -> int:
         # print(n, requests)
         maximum_requests = 0
         for requestsIncluded in range(1, len(requests) + 1):
