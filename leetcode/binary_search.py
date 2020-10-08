@@ -3,20 +3,21 @@
 https://leetcode.com/problems/binary-search/
 """
 
+from bisect import bisect_left
+
 
 class Solution:
     @staticmethod
     def search(nums: [int], target: int) -> int:
-        for index, num in enumerate(nums):
-            if num == target:
-                return index
-            elif num > target:
-                break
-        return -1
+        index = bisect_left(nums, target)
+        if target > nums[-1] or target < nums[0] or nums[index] != target:
+            index = -1
+        return index
 
 
 assert Solution.search(nums=[-1, 0, 3, 5, 9, 12], target=9) == 4
 assert Solution.search(nums=[-1, 0, 3, 5, 9, 12], target=2) == -1
+assert Solution.search(nums=[-1, 0, 3, 5, 9, 12], target=14) == -1
 
 """
 Example 1:
