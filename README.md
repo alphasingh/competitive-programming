@@ -1,7 +1,7 @@
 # competitive-programming
 Solutions and explanations to the problems solved for fun
 
-Main websites that I solve on:
-1. [Leetcode](https://leetcode.com/)
-2. [Codechef](https://www.codechef.com/)
-3. [Hackerrank](https://www.hackerrank.com/)
+Coding profiles you can stalk:
+1. [Leetcode](https://leetcode.com/alphasingh/)
+2. [Codechef](https://www.codechef.com/users/alphasingh)
+3. [Hackerrank](https://www.hackerrank.com/alphasingh)
