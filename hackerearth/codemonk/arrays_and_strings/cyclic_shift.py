@@ -1,21 +1,15 @@
 # returns list of all the values of cyclic shifts where the A is B, i.e. max
 def find_max_shifts(size_of_binary_string, binary_string):
-    all_shifts = []
     max_shift = binary_string
     max_shifts = []
     for shift in range(size_of_binary_string):
         current_shift = binary_string[size_of_binary_string - shift:] + binary_string[:size_of_binary_string - shift]
-        # print(current_shift)
         if current_shift > max_shift:
             max_shift = current_shift
-        all_shifts.append(current_shift)
-    # print('max_shift', max_shift)
-    all_shifts.reverse()
-    all_shifts.insert(0, all_shifts.pop())
-    # print(all_shifts)
-    for shift in range(size_of_binary_string):
-        if all_shifts[shift] == max_shift:
-            max_shifts.append(shift)
+    for shift in range(size_of_binary_string, 0, -1):
+        current_shift = binary_string[size_of_binary_string - shift:] + binary_string[:size_of_binary_string - shift]
+        if current_shift == max_shift:
+            max_shifts.append(size_of_binary_string - shift)
     return max_shifts
 
 
