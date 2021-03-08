@@ -1,13 +1,17 @@
+def get_current_shift(size_of_binary_string, binary_string, shift):
+    return binary_string[size_of_binary_string - shift:] + binary_string[:size_of_binary_string - shift]
+
+
 # returns list of all the values of cyclic shifts where the A is B, i.e. max
 def find_max_shifts(size_of_binary_string, binary_string):
     max_shift = binary_string
     max_shifts = []
     for shift in range(size_of_binary_string):
-        current_shift = binary_string[size_of_binary_string - shift:] + binary_string[:size_of_binary_string - shift]
+        current_shift = get_current_shift(size_of_binary_string, binary_string, shift)
         if current_shift > max_shift:
             max_shift = current_shift
     for shift in range(size_of_binary_string, 0, -1):
-        current_shift = binary_string[size_of_binary_string - shift:] + binary_string[:size_of_binary_string - shift]
+        current_shift = get_current_shift(size_of_binary_string, binary_string, shift)
         if current_shift == max_shift:
             max_shifts.append(size_of_binary_string - shift)
     return max_shifts
