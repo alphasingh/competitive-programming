@@ -2,18 +2,35 @@
 https://leetcode.com/problems/daily-temperatures/
 """
 
+import bisect
+
 
 class Solution:
+    MIN = 30
+    MAX = 100
+
     @staticmethod
-    def dailyTemperatures(temperatures: [int]) -> [int]:  # brute force
-        length_of_temperatures = len(temperatures)
-        for today in range(length_of_temperatures):
-            for higher in range(today + 1, length_of_temperatures):
-                if temperatures[higher] > temperatures[today]:
-                    temperatures[today] = higher - today
-                    break
+    def getPossibleTemperatures() -> dict:
+        possible_temperatures = dict()  # map
+        for temperature in range(Solution.MIN, Solution.MAX + 1):
+            possible_temperatures[temperature] = list()
+        return possible_temperatures
+
+    @staticmethod
+    def dailyTemperatures(temperatures: [int]) -> [int]:
+        possible_temperatures = Solution.getPossibleTemperatures()
+        for day, temperature_of_day in enumerate(temperatures):
+            possible_temperatures[temperature_of_day].append(day)
+        for day, temperature_of_day in enumerate(temperatures):
+            higher = 1e10
+            for possible_temperature in range(temperature_of_day + 1, Solution.MAX + 1):
+                index = bisect.bisect(possible_temperatures[possible_temperature], day)
+                if index < len(possible_temperatures[possible_temperature]):
+                    higher = min(higher, possible_temperatures[possible_temperature][index])
+            if higher < 1e10:
+                temperatures[day] = higher - day
             else:
-                temperatures[today] = 0
+                temperatures[day] = 0
         return temperatures
 
 
