@@ -6,11 +6,10 @@ https://leetcode.com/problems/minimum-cost-to-move-chips-to-the-same-position/
 class Solution:
     @staticmethod
     def minCostToMoveChips(positions: [int]) -> int:
-        even_chips = 0
+        odd_chips = 0
         for chip_position in positions:
-            if chip_position % 2 == 0:
-                even_chips += 1
-        return min(even_chips, len(positions) - even_chips)
+            odd_chips += chip_position & 1
+        return min(odd_chips, len(positions) - odd_chips)
 
 
 assert Solution.minCostToMoveChips([1, 2, 3]) is 1
