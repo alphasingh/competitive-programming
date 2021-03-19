@@ -2,22 +2,21 @@
 https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
 """
 
+import bisect
+
 
 class Solution:
     @staticmethod
     def twoSum(numbers: [int], target: int) -> [int]:
-        two_sum = [1, 1]  # indexes of the 2 numbers adding up to target
         numbers_length = len(numbers)
-        indexes = dict()
-        for index in range(numbers_length):
-            indexes[numbers[index]] = index
         for first_index in range(numbers_length):
             second = target - numbers[first_index]
-            if second in indexes:
-                two_sum[0] += first_index
-                two_sum[1] += indexes[second]
+            second_index = bisect.bisect_right(numbers, second) - 1
+            if second == numbers[second_index]:
+                numbers[0] = first_index + 1
+                numbers[1] = second_index + 1
                 break
-        return two_sum
+        return numbers[0:2]
 
 
 assert Solution.twoSum(numbers=[2, 7, 11, 15], target=9) == [1, 2]
@@ -39,4 +38,8 @@ Output: [1,3]
 Example 3:
 Input: numbers = [-1,0], target = -1
 Output: [1,2]
+"""
+
+"""
+https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/discuss/51249/Python-different-solutions-(two-pointer-dictionary-binary-search).
 """
