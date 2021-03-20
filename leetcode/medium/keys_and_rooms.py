@@ -6,7 +6,18 @@ https://leetcode.com/problems/keys-and-rooms/
 class Solution:
     @staticmethod
     def canVisitAllRooms(rooms: [[int]]) -> bool:
-        return not rooms
+        total_rooms = len(rooms)
+        visited = [False] * total_rooms
+        to_be_visited = [0]  # room 0 is unlocked
+        visited[0] = True
+        while to_be_visited:
+            current_visit = to_be_visited.pop()
+            keys_in_current_visit = rooms[current_visit]
+            for key in keys_in_current_visit:
+                if not visited[key]:
+                    to_be_visited.append(key)
+                    visited[key] = True
+        return set(visited) == {True}
 
 
 assert Solution.canVisitAllRooms([[1], [2], [3], []]) is True
