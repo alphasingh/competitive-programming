@@ -3,6 +3,10 @@ https://leetcode.com/problems/design-underground-system/
 """
 
 
+def roundTo5Digits(number: float) -> float:
+    return round(number, 5)
+
+
 class UndergroundSystem:
 
     def __init__(self):
@@ -50,13 +54,13 @@ undergroundSystem.getAverageTime("Leyton", "Waterloo")
 system2 = UndergroundSystem()
 system2.checkIn(10, "Leyton", 3)
 system2.checkOut(10, "Paradise", 8)
-system2.getAverageTime("Leyton", "Paradise")  # return 5.00000
+assert roundTo5Digits(system2.getAverageTime("Leyton", "Paradise")) == 5
 system2.checkIn(5, "Leyton", 10)
 system2.checkOut(5, "Paradise", 16)
-system2.getAverageTime("Leyton", "Paradise")  # return 5.50000
+assert roundTo5Digits(system2.getAverageTime("Leyton", "Paradise")) == 5.5
 system2.checkIn(2, "Leyton", 21)
 system2.checkOut(2, "Paradise", 30)
-system2.getAverageTime("Leyton", "Paradise")  # return 6.66667
+assert roundTo5Digits(system2.getAverageTime("Leyton", "Paradise")) == 6.66667
 
 """
 Example 1:
