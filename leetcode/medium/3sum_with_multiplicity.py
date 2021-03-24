@@ -2,6 +2,9 @@
 https://leetcode.com/problems/3sum-with-multiplicity/
 """
 
+from collections import Counter
+from itertools import combinations_with_replacement
+
 
 class Solution:
     MODULO = 1000000007
@@ -20,34 +23,17 @@ class Solution:
 
     @staticmethod
     def threeSumMulti(arr: [int], target: int) -> int:
-        combinations = 0
-        frequency = dict()
-        for i in range(len(arr)):
-            if arr[i] not in frequency:
-                frequency[arr[i]] = 0
-            frequency[arr[i]] += 1
-        print(frequency)
-        arr = list(frequency.keys())
-        size = len(arr)
-        c = list()
-        print(arr)
-        for first in range(0, size - 2):
-            second = first + 1
-            third = size - 1
-            while second < third:
-                print(arr[first], arr[second], arr[third])
-                sum_of_triplet = arr[first] + arr[second] + arr[third]
-                if sum_of_triplet == target:
-                    combinations += 1
-                    c.append((arr[first], arr[second], arr[third]))
-                    second += 1
-                    third = size - 1
-                elif sum_of_triplet < target:
-                    second += 1
-                else:  # sum_of_triplet > target
-                    third -= 1
-        print(c)
-        return combinations % Solution.MODULO
+        c = Counter(arr)
+        res = 0
+        for i, j in combinations_with_replacement(c, 2):
+            k = target - i - j
+            if i == j == k:
+                res += c[i] * (c[i] - 1) * (c[i] - 2) // 6
+            elif i == j != k:
+                res += c[i] * (c[i] - 1) // 2 * c[k]
+            elif k > i and k > j:
+                res += c[i] * c[j] * c[k]
+        return res % 1000000007
 
 
 assert Solution.threeSumMulti_brute(arr=[1, 1, 2, 2, 3, 3, 4, 4, 5, 5], target=8) is 20
