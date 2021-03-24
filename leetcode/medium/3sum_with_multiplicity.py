@@ -7,10 +7,51 @@ class Solution:
     MODULO = 1000000007
 
     @staticmethod
+    def threeSumMulti_brute(arr: [int], target: int) -> int:
+        combinations = 0
+        size = len(arr)
+        arr.sort()
+        for first in range(size):
+            for second in range(first + 1, size):
+                for third in range(second + 1, size):
+                    if target == arr[first] + arr[second] + arr[third]:
+                        combinations += 1
+        return combinations % Solution.MODULO
+
+    @staticmethod
     def threeSumMulti(arr: [int], target: int) -> int:
-        return [12, 20][target == 8] % Solution.MODULO
+        combinations = 0
+        frequency = dict()
+        for i in range(len(arr)):
+            if arr[i] not in frequency:
+                frequency[arr[i]] = 0
+            frequency[arr[i]] += 1
+        print(frequency)
+        arr = list(frequency.keys())
+        size = len(arr)
+        c = list()
+        print(arr)
+        for first in range(0, size - 2):
+            second = first + 1
+            third = size - 1
+            while second < third:
+                print(arr[first], arr[second], arr[third])
+                sum_of_triplet = arr[first] + arr[second] + arr[third]
+                if sum_of_triplet == target:
+                    combinations += 1
+                    c.append((arr[first], arr[second], arr[third]))
+                    second += 1
+                    third = size - 1
+                elif sum_of_triplet < target:
+                    second += 1
+                else:  # sum_of_triplet > target
+                    third -= 1
+        print(c)
+        return combinations % Solution.MODULO
 
 
+assert Solution.threeSumMulti_brute(arr=[1, 1, 2, 2, 3, 3, 4, 4, 5, 5], target=8) is 20
+assert Solution.threeSumMulti_brute(arr=[1, 1, 2, 2, 2, 2], target=5) is 12
 assert Solution.threeSumMulti(arr=[1, 1, 2, 2, 3, 3, 4, 4, 5, 5], target=8) is 20
 assert Solution.threeSumMulti(arr=[1, 1, 2, 2, 2, 2], target=5) is 12
 
