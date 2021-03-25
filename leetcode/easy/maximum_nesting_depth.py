@@ -6,7 +6,14 @@ https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/
 class Solution:
     @staticmethod
     def maxDepth(s: str) -> int:
-        return len(s)
+        current_depth = max_depth = 0
+        for character in s:
+            if character == '(':
+                current_depth += 1
+                max_depth = max(max_depth, current_depth)
+            elif character == ')':
+                current_depth -= 1
+        return max_depth
 
 
 assert Solution.maxDepth(s="(1+(2*3)+((8)/4))+1") is 3
