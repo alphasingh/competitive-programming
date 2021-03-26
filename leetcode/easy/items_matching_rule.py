@@ -11,7 +11,7 @@ class Solution:
             match_index = 0
         elif ruleKey == "color":
             match_index = 1
-        return sum([ruleValue == item[match_index] for item in items])
+        return len(tuple(filter(lambda item: ruleValue == item[match_index], items)))
 
 
 assert Solution.countMatches(
