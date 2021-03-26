@@ -6,15 +6,12 @@ https://leetcode.com/problems/count-items-matching-a-rule/
 class Solution:
     @staticmethod
     def countMatches(items: [[str]], ruleKey: str, ruleValue: str) -> int:
-        matches = 0
-        for item in items:
-            if ruleKey == "type" and ruleValue == item[0]:
-                matches += 1
-            elif ruleKey == "color" and ruleValue == item[1]:
-                matches += 1
-            elif ruleKey == "name" and ruleValue == item[2]:
-                matches += 1
-        return matches
+        match_index = 2  # ruleKey == "name"
+        if ruleKey == "type":
+            match_index = 0
+        elif ruleKey == "color":
+            match_index = 1
+        return sum([ruleValue == item[match_index] for item in items])
 
 
 assert Solution.countMatches(
