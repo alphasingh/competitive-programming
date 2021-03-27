@@ -6,7 +6,10 @@ https://leetcode.com/problems/shuffle-string/
 class Solution:
     @staticmethod
     def restoreString(s: str, indices: [int]) -> str:
-        return s
+        restored = list(s)
+        for enumerator, index in enumerate(indices):
+            restored[index] = s[enumerator]
+        return "".join(restored)
 
 
 assert Solution.restoreString(s="codeleet", indices=[4, 5, 6, 7, 0, 2, 1, 3]) == "leetcode"
