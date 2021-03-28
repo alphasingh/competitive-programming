@@ -2,11 +2,18 @@
 https://leetcode.com/problems/sum-of-unique-elements/
 """
 
+from collections import Counter
+
 
 class Solution:
     @staticmethod
     def sumOfUnique(nums: [int]) -> int:
-        return sum(nums)
+        counter = Counter(nums)
+        sum_of_unique = 0
+        for key, value in counter.items():
+            if value == 1:  # exactly once
+                sum_of_unique += key
+        return sum_of_unique
 
 
 assert Solution.sumOfUnique(nums=[1, 2, 3, 2]) is 4
