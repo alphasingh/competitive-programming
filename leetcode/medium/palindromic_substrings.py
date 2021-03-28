@@ -6,8 +6,19 @@ https://leetcode.com/problems/palindromic-substrings/
 class Solution:
 
     @staticmethod
+    def isPalindrome(s: str) -> bool:
+        return s == s[::-1]
+
+    @staticmethod
     def countSubstrings(s: str) -> int:
-        return len(s)
+        palindromes = 0
+        length = len(s)
+        for size in range(length):
+            for start in range(length - size):
+                substring = s[start:start + size + 1]
+                if Solution.isPalindrome(substring):
+                    palindromes += 1
+        return palindromes
 
 
 assert Solution.countSubstrings("abc") is 3
