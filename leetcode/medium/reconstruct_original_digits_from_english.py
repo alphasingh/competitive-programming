@@ -20,7 +20,12 @@ class Solution:
         digit_dictionary = {digit: Counter(digit) for digit in Solution.DIGITS}
         print(digit_dictionary)
         for digit in digit_dictionary:
-            print(digit)
+            current_dictionary = digit_dictionary[digit]
+            digit_minimum_count = 50000
+            for alphabet in current_dictionary:
+                alphabet_count = jumbled_word_dictionary[alphabet] // current_dictionary[alphabet]
+                digit_minimum_count = min(digit_minimum_count, alphabet_count)
+            digit_count[digit] = digit_minimum_count
         for i, digit in enumerate(Solution.DIGITS):
             output += str(i) * digit_count[digit]
         print(output)
@@ -30,5 +35,5 @@ class Solution:
 # '0'*c[0] + '1'*c[1] + '2'*c[2] + '3'*c[3] + '4'*c[4] + '5'*c[5] + '6'*c[6] + '7'*c[7] + '8'*c[8] + '9'*c[9]
 
 
-assert Solution.originalDigits("owoztneoer") is "012"
-assert Solution.originalDigits("fviefuro") is "45"
+assert Solution.originalDigits("owoztneoer") == "012"
+assert Solution.originalDigits("fviefuro") == "45"
