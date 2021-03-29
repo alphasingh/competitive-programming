@@ -10,15 +10,19 @@ class Solution:
     ALPHABETS = 'abcdefghijklmnopqrstuvwxyz'
 
     @staticmethod
-    def originalDigits(s: str) -> str:
-        c = [1] * 10  # count for 0-9 digits
+    def originalDigits(jumbled_word: str) -> str:
+        digit_count = {digit: 0 for digit in Solution.DIGITS}  # count for 0-9 digits
         output = ''  # final output
-        s_alphabets = {alphabet: 0 for alphabet in Solution.ALPHABETS}
-        print(s_alphabets)
+        jumbled_word_dictionary = {alphabet: 0 for alphabet in Solution.ALPHABETS}
+        for char in jumbled_word:
+            jumbled_word_dictionary[char] += 1
+        print(jumbled_word_dictionary)
         digit_dictionary = {digit: Counter(digit) for digit in Solution.DIGITS}
         print(digit_dictionary)
-        for digit in range(10):
-            output += str(digit) * c[digit]
+        for digit in digit_dictionary:
+            print(digit)
+        for i, digit in enumerate(Solution.DIGITS):
+            output += str(i) * digit_count[digit]
         print(output)
         return output
 
