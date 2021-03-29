@@ -16,19 +16,45 @@ class Solution:
         jumbled_word_dictionary = {alphabet: 0 for alphabet in Solution.ALPHABETS}
         for char in jumbled_word:
             jumbled_word_dictionary[char] += 1
-        print(jumbled_word_dictionary)
+        # print(jumbled_word_dictionary)
         digit_dictionary = {digit: Counter(digit) for digit in Solution.DIGITS}
-        print(digit_dictionary)
+        # print(digit_dictionary)
         for digit in digit_dictionary:
             current_dictionary = digit_dictionary[digit]
             digit_minimum_count = 50000
             for alphabet in current_dictionary:
                 alphabet_count = jumbled_word_dictionary[alphabet] // current_dictionary[alphabet]
                 digit_minimum_count = min(digit_minimum_count, alphabet_count)
+            if digit_minimum_count > 0:
+                for alphabet in current_dictionary:
+                    jumbled_word_dictionary[alphabet] -= current_dictionary[alphabet] * digit_minimum_count
             digit_count[digit] = digit_minimum_count
         for i, digit in enumerate(Solution.DIGITS):
             output += str(i) * digit_count[digit]
         print(output)
+        return output
+
+    @staticmethod
+    def originalDigits_brute(jumbled_word: str) -> str:  # brute force
+        digit_count = {digit: 0 for digit in Solution.DIGITS}  # count for 0-9 digits
+        output = ''  # final output
+        jumbled_word_dictionary = {alphabet: 0 for alphabet in Solution.ALPHABETS}
+        for char in jumbled_word:
+            jumbled_word_dictionary[char] += 1
+        # print(jumbled_word_dictionary)
+        digit_dictionary = {digit: Counter(digit) for digit in Solution.DIGITS}
+        # print(digit_dictionary)
+        while any(jumbled_word_dictionary[alphabet] != 0 for alphabet in jumbled_word_dictionary):
+            for digit in digit_dictionary:
+                current_dictionary = digit_dictionary[digit]
+                all_exist = all(jumbled_word_dictionary[ch] >= current_dictionary[ch] for ch in current_dictionary)
+                if all_exist:
+                    digit_count[digit] += 1
+                    for ch in current_dictionary:
+                        jumbled_word_dictionary[ch] -= current_dictionary[ch]
+        for i, digit in enumerate(Solution.DIGITS):
+            output += str(i) * digit_count[digit]
+        # print(output)
         return output
 
 
@@ -37,3 +63,5 @@ class Solution:
 
 assert Solution.originalDigits("owoztneoer") == "012"
 assert Solution.originalDigits("fviefuro") == "45"
+assert Solution.originalDigits("zeroonetwothreefourfivesixseveneightnine") == "0123456789"
+assert Solution.originalDigits("eezertwooononnine") == "01129"
