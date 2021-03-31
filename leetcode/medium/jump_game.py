@@ -4,8 +4,23 @@ https://leetcode.com/problems/jump-game/
 
 
 class Solution:
+
     @staticmethod
     def canJump(nums: [int]) -> bool:
+        position = 0
+        total_max = 0
+        size_nums = len(nums)
+        while position <= total_max:
+            if position >= size_nums:
+                break
+            current_max = position + nums[position]
+            if current_max > total_max:
+                total_max = current_max
+            position += 1
+        return total_max >= size_nums - 1
+
+    @staticmethod
+    def canJump_brute(nums: [int]) -> bool:
         to_be_visited = [0]  # first visit at the starting index
         size_nums = len(nums)
         visited = [False] * size_nums  # to keep track of the visited elements
@@ -33,3 +48,4 @@ assert Solution.canJump(nums=[2, 3, 1, 1, 4]) is True
 assert Solution.canJump(nums=[3, 2, 1, 0, 4]) is False
 # Explanation: You will always arrive at index 3 no matter what.
 # Its maximum jump length is 0, which makes it impossible to reach the last index.
+assert Solution.canJump(nums=[0]) is True
