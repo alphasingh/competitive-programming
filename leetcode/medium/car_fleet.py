@@ -7,7 +7,14 @@ class Solution:
 
     @staticmethod
     def carFleet(target: int, position: [int], speed: [int]) -> int:
-        return len(position) + len(speed) + target
+        time_to_target = [float((target - p) / s) for p, s in sorted(zip(position, speed), reverse=True)]
+        slowest = 0
+        fleets = 0
+        for time in time_to_target:
+            if time > slowest:
+                slowest = time
+                fleets += 1
+        return fleets
 
 
 assert Solution.carFleet(target=12, position=[10, 8, 0, 5, 3], speed=[2, 4, 1, 1, 3]) is 3
