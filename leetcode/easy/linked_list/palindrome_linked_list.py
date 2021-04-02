@@ -15,15 +15,11 @@ class ListNode:
 class Solution:
     @staticmethod
     def isPalindrome(head: ListNode) -> bool:
-        first, second = head, head.next if head else None
-        while second:  # if second exists
-            if second.val == first.val:
-                second = second.next
-                first.next = second
-            else:  # current_node.val <= start
-                first = second
-                second = second.next
-        return True
+        elements = []
+        while head:  # if head exists
+            elements.append(head.val)
+            head = head.next
+        return elements == elements[::-1]
 
 
 assert Solution.isPalindrome(ListNode(
