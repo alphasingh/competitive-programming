@@ -2,6 +2,8 @@
 https://leetcode.com/problems/palindrome-linked-list/
 """
 
+from collections import deque
+
 
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -15,11 +17,15 @@ class ListNode:
 class Solution:
     @staticmethod
     def isPalindrome(head: ListNode) -> bool:
-        elements = []
+        elements = deque()
         while head:  # if head exists
             elements.append(head.val)
             head = head.next
-        return elements == elements[::-1]
+        size = len(elements)
+        for i in range(size // 2):
+            if elements[i] != elements[-i - 1]:
+                return False
+        return True
 
 
 assert Solution.isPalindrome(ListNode(
@@ -30,3 +36,5 @@ assert Solution.isPalindrome(ListNode(
 assert Solution.isPalindrome(ListNode(
     val=1, next=ListNode(
         val=2, next=None))) is False
+assert Solution.isPalindrome(ListNode(
+    val=2, next=None)) is True
