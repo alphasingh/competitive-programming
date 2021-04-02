@@ -2,30 +2,21 @@
 https://leetcode.com/problems/palindrome-linked-list/
 """
 
-from collections import deque
-
 
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 
-    def __str__(self):
-        return str(self.val) + "->" + str(self.next)
-
 
 class Solution:
     @staticmethod
     def isPalindrome(head: ListNode) -> bool:
-        elements = deque()
+        elements = list()
         while head:  # if head exists
             elements.append(head.val)
             head = head.next
-        size = len(elements)
-        for i in range(size // 2):
-            if elements[i] != elements[-i - 1]:
-                return False
-        return True
+        return elements == elements[::-1]
 
 
 assert Solution.isPalindrome(ListNode(
