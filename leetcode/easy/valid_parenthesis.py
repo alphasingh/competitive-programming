@@ -6,7 +6,22 @@ https://leetcode.com/problems/valid-parentheses/
 class Solution:
     @staticmethod
     def isValid(s: str) -> bool:
-        return True
+        stack = []
+        valid_stack = True
+        for bracket in s:
+            if bracket == "(":
+                stack.append(bracket)
+            elif bracket == "[":
+                stack.append(bracket)
+            elif bracket == "{":
+                stack.append(bracket)
+            elif bracket == ")":
+                valid_stack = True if stack and stack.pop() == "(" else False
+            elif bracket == "]":
+                valid_stack = True if stack and stack.pop() == "[" else False
+            elif bracket == "}":
+                valid_stack = True if stack and stack.pop() == "{" else False
+        return valid_stack
 
 
 assert Solution.isValid("()") is True
