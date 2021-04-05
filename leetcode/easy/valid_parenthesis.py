@@ -21,7 +21,9 @@ class Solution:
                 valid_stack = True if stack and stack.pop() == "[" else False
             elif bracket == "}":
                 valid_stack = True if stack and stack.pop() == "{" else False
-        return valid_stack
+            if not valid_stack:
+                break
+        return len(stack) == 0 and valid_stack
 
 
 assert Solution.isValid("()") is True
@@ -29,3 +31,5 @@ assert Solution.isValid("()[]{}") is True
 assert Solution.isValid("(]") is False
 assert Solution.isValid("([)]") is False
 assert Solution.isValid("{[]}") is True
+assert Solution.isValid("[") is False
+assert Solution.isValid("({{{{}}}))") is False
