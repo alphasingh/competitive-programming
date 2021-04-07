@@ -4,9 +4,19 @@ https://leetcode.com/problems/determine-if-string-halves-are-alike/
 
 
 class Solution:
+    VOWELS = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}
+
     @staticmethod
     def halvesAreAlike(s: str) -> bool:
-        return len(s) == 0
+        length = len(s)
+        first = second = 0
+        for i in range(length // 2):
+            if s[i] in Solution.VOWELS:
+                first += 1
+        for i in range(length // 2, length):
+            if s[i] in Solution.VOWELS:
+                second += 1
+        return first == second
 
 
 assert Solution.halvesAreAlike(s="book") is True
