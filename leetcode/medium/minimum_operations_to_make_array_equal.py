@@ -6,7 +6,14 @@ https://leetcode.com/problems/minimum-operations-to-make-array-equal/
 class Solution:
     @staticmethod
     def minOperations(n: int) -> int:
-        return n
+        operations = 0
+        if n & 1:  # n is odd
+            n //= 2  # make pairs for each operation
+            operations = n * (n + 1)  # sum of n even numbers
+        else:  # n is even
+            n //= 2  # make pairs for each operation
+            operations = n * n  # sum of n odd numbers
+        return operations
 
 
 assert Solution.minOperations(3) == 2
