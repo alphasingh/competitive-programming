@@ -15,14 +15,9 @@ class Solution:
                 points_on_current_line = 0
                 y_diff = line_end[1] - line_start[1]
                 x_diff = line_end[0] - line_start[0]
-                if x_diff == 0:  # vertical line, i.e. x=line_end[0]
-                    for point in points:
-                        if point[0] == line_end[0]:  # if x lies on the vertical line
-                            points_on_current_line += 1
-                else:
-                    for point in points:
-                        if (point[1] - line_end[1]) * x_diff == (point[0] - line_end[0]) * y_diff:
-                            points_on_current_line += 1
+                for point in points:
+                    if (point[1] - line_end[1]) * x_diff == (point[0] - line_end[0]) * y_diff:
+                        points_on_current_line += 1
                 max_points = max(max_points, points_on_current_line)
         # print(max_points)
         return max_points
