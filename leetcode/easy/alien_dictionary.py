@@ -9,7 +9,12 @@ class Solution:
     def isAlienSorted(words: [str], order: str) -> bool:
         value = {alphabet: position for position, alphabet in enumerate(order)}
         value_of_words = [[value[alphabet] for alphabet in word] for word in words]
-        return sorted(value_of_words) == value_of_words
+        is_sorted = True
+        for i in range(len(value_of_words) - 1):
+            if value_of_words[i] > value_of_words[i + 1]:
+                is_sorted = False
+                break
+        return is_sorted
 
 
 assert Solution.isAlienSorted(words=["hello", "leetcode"], order="hlabcdefgijkmnopqrstuvwxyz") is True
