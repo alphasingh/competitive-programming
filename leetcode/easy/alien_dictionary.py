@@ -7,7 +7,9 @@ class Solution:
 
     @staticmethod
     def isAlienSorted(words: [str], order: str) -> bool:
-        return len(words) <= len(order)
+        value = {alphabet: position for position, alphabet in enumerate(order)}
+        value_of_words = [[value[alphabet] for alphabet in word] for word in words]
+        return sorted(value_of_words) == value_of_words
 
 
 assert Solution.isAlienSorted(words=["hello", "leetcode"], order="hlabcdefgijkmnopqrstuvwxyz") is True
