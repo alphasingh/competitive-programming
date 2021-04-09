@@ -4,11 +4,10 @@ https://leetcode.com/problems/power-of-three/
 
 
 class Solution:
-    POWERS = [3 ** i for i in range(20)]
 
     @staticmethod
     def isPowerOfThree(n: int) -> bool:
-        return n in Solution.POWERS
+        return n > 0 and 1162261467 % n == 0  # divides 3**19
 
 
 assert Solution.isPowerOfThree(27) is True
