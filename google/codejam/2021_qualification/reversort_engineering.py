@@ -2,6 +2,8 @@
 https://codingcompetitions.withgoogle.com/codejam/round/000000000043580a/00000000006d12d7
 """
 
+from itertools import permutations
+
 
 def reversort(integers: [int], size: int) -> int:
     cost = 0
@@ -16,18 +18,24 @@ def reversort(integers: [int], size: int) -> int:
     return cost
 
 
-def find_permutation_with_cost(size: int, cost: int):
-    integers = [0] * size
-    if len(integers) > cost:  # if no permutation found with desired cost
-        integers = "IMPOSSIBLE"
-    return integers
+def find_permutation_with_cost(size: int, cost: int) -> str:
+    output = "IMPOSSIBLE"  # if no permutation found with desired cost
+    integers = [integer for integer in range(1, size + 1)]
+    for permutation in list(permutations(integers)):
+        cost_of_permutation = reversort(permutation, size)
+        print(permutation, cost_of_permutation)
+        if cost_of_permutation == cost:
+            output = ""
+            for i in range(size - 1):
+                output += str(permutation[i]) + " "
+            output += str(permutation[-1])
+            break
+    print(output)
+    return output
 
 
-assert find_permutation_with_cost(size=4, cost=6) == [0] * 4
-assert find_permutation_with_cost(size=4, cost=6) == [0] * 4
-assert find_permutation_with_cost(size=4, cost=6) == [0] * 4
-assert find_permutation_with_cost(size=4, cost=6) == [0] * 4
-assert find_permutation_with_cost(size=4, cost=6) == [0] * 4
+assert find_permutation_with_cost(size=4, cost=6) == "1 3 4 2"
+assert find_permutation_with_cost(size=4, cost=6) == "1 3 4 2"
 assert int(True) == 0  # change to 1 to switch on custom TCs
 
 for T in range(int(input())):
