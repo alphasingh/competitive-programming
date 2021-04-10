@@ -16,28 +16,37 @@ def reversort(integers: [int], size: int) -> int:
     return cost
 
 
-assert reversort(integers=[4, 2, 1, 3], size=4) == 6
-assert reversort(integers=[1, 2], size=2) == 1
-assert reversort(integers=[7, 6, 5, 4, 3, 2, 1], size=7) == 12
+def find_permutation_with_cost(size: int, cost: int):
+    integers = [0] * size
+    if len(integers) > cost:  # if no permutation found with desired cost
+        integers = "IMPOSSIBLE"
+    return integers
+
+
+assert find_permutation_with_cost(size=4, cost=6) == [0] * 4
+assert find_permutation_with_cost(size=4, cost=6) == [0] * 4
+assert find_permutation_with_cost(size=4, cost=6) == [0] * 4
+assert find_permutation_with_cost(size=4, cost=6) == [0] * 4
+assert find_permutation_with_cost(size=4, cost=6) == [0] * 4
 assert int(True) == 0  # change to 1 to switch on custom TCs
 
 for T in range(int(input())):
-    N = int(input())
-    L = list(map(int, input().split()))
-    print("Case #{}: {}".format(T + 1, reversort(L, N)))
+    N, C = map(int, input().split())
+    print("Case #{}: {}".format(T + 1, find_permutation_with_cost(N, C)))
 
 '''
 INPUT:
-3
-4
-4 2 1 3
-2
-1 2
-7
-7 6 5 4 3 2 1
+5
+4 6
+2 1
+7 12
+7 2
+2 1000
 
 OUTPUT:
-Case #1: 6
-Case #2: 1
-Case #3: 12
+Case #1: 4 2 1 3
+Case #2: 1 2
+Case #3: 7 6 5 4 3 2 1
+Case #4: IMPOSSIBLE
+Case #5: IMPOSSIBLE
 '''
