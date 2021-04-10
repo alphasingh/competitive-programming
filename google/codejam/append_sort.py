@@ -7,7 +7,12 @@ def is_possible_to_make(source: int, destination: int) -> bool:
     source, destination = str(source), str(destination)
     source_length, destination_length = len(source), len(destination)
     assert source_length <= destination_length
-    return source == destination
+    is_possible = True
+    for index in range(source_length):
+        if source[index] != destination[index]:
+            is_possible = False
+            break
+    return is_possible
 
 
 def minimum_operations(integers: [int], size: int) -> int:
