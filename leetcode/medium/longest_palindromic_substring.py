@@ -7,7 +7,8 @@ class Solution:
 
     @staticmethod
     def longestPalindrome(s: str) -> str:
-        return s
+        longest_palindrome = len(s)
+        return longest_palindrome
 
 
 assert Solution.longestPalindrome("babad") == "bab"
