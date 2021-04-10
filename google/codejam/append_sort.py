@@ -34,7 +34,7 @@ assert minimum_operations(integers=[100, 7, 10], size=3) == 4
 assert minimum_operations(integers=[10, 10], size=2) == 1
 assert minimum_operations(integers=[4, 19, 1], size=3) == 2
 assert minimum_operations(integers=[1, 2, 3], size=3) == 0
-assert int(True) == 1  # change to 1 to switch on custom TCs
+assert int(True) == 0  # change to 1 to switch on custom TCs
 
 for T in range(int(input())):
     N = int(input())
