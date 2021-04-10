@@ -3,16 +3,26 @@ https://codingcompetitions.withgoogle.com/codejam/round/000000000043585d/0000000
 """
 
 
+def is_possible_to_make(source: int, destination: int) -> bool:
+    source, destination = str(source), str(destination)
+    source_length, destination_length = len(source), len(destination)
+    assert source_length <= destination_length
+    return source == destination
+
+
 def minimum_operations(integers: [int], size: int) -> int:
     operations = 0
     # print(integers)
     for i in range(size - 1):
         first = integers[i]
         second = integers[i + 1]
-        append = 0
-        while second <= first:
-            second = int(str(integers[i + 1]) + str(append))
-            append += 1
+        if second <= first:
+            if is_possible_to_make(second, first + 1):  # if possible from second
+                second = first + 1
+            else:  # append padding zeroes
+                second = int(str(second) + '0' * (len(str(first)) - len(str(second))))
+                if first >= second:  # still padding is required
+                    second = int(str(second) + '0')
         operations += len(str(second)) - len(str(integers[i + 1]))
         # print(first, second)
         # print(integers)
