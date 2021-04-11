@@ -7,8 +7,6 @@ class Solution:
 
     @staticmethod
     def longestIncreasingPath(matrix: [[int]]) -> int:
-        m, n = len(matrix), len(matrix[0])
-
         def dfs(row: int, col: int) -> int:
             val = matrix[row][col]
             dfs_up = dfs(row - 1, col) if row and val < matrix[row - 1][col] else 0
@@ -18,6 +16,7 @@ class Solution:
             dp[row][col] = 1 + max(dfs_up, dfs_down, dfs_left, dfs_right)
             return dp[row][col]
 
+        m, n = len(matrix), len(matrix[0])
         dp = [[0] * n for _ in range(m)]
         return max(dfs(r, c) for r in range(m) for c in range(n))
 
