@@ -14,7 +14,7 @@ def minimize_copyright_cost(cost_cj: int, cost_jc: int, mural: str) -> int:
             x += 1
         elif mural_without_doubt[i] == 'J' and mural_without_doubt[i + 1] == 'C':
             y += 1
-    print(x, y, cost_cj, cost_jc, mural)
+    # print(x, y, cost_cj, cost_jc, mural)
     return x * cost_cj + y * cost_jc
 
 
@@ -22,6 +22,7 @@ assert minimize_copyright_cost(2, 3, "CJ?CC?") == 5
 assert minimize_copyright_cost(4, 2, "CJCJ") == 10
 assert minimize_copyright_cost(1, 3, "C?J") == 1
 assert minimize_copyright_cost(2, 5, "??J???") == 0
+assert minimize_copyright_cost(21, 50, "??????") == 0
 assert int(True) == 0  # change to 1 to switch on custom TCs
 
 for T in range(int(input())):
