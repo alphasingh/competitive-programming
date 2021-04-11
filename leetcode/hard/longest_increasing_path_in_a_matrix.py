@@ -8,12 +8,13 @@ class Solution:
     @staticmethod
     def longestIncreasingPath(matrix: [[int]]) -> int:
         def dfs(row: int, col: int) -> int:
-            val = matrix[row][col]
-            dfs_up = dfs(row - 1, col) if row and val < matrix[row - 1][col] else 0
-            dfs_down = dfs(row + 1, col) if row + 1 < m and val < matrix[row + 1][col] else 0
-            dfs_left = dfs(row, col - 1) if col and val < matrix[row][col - 1] else 0
-            dfs_right = dfs(row, col + 1) if col + 1 < n and val < matrix[row][col + 1] else 0
-            dp[row][col] = 1 + max(dfs_up, dfs_down, dfs_left, dfs_right)
+            if not dp[row][col]:  # only calculate if not already done
+                val = matrix[row][col]
+                dfs_up = dfs(row - 1, col) if row and val < matrix[row - 1][col] else 0
+                dfs_down = dfs(row + 1, col) if row + 1 < m and val < matrix[row + 1][col] else 0
+                dfs_left = dfs(row, col - 1) if col and val < matrix[row][col - 1] else 0
+                dfs_right = dfs(row, col + 1) if col + 1 < n and val < matrix[row][col + 1] else 0
+                dp[row][col] = 1 + max(dfs_up, dfs_down, dfs_left, dfs_right)
             return dp[row][col]
 
         m, n = len(matrix), len(matrix[0])
