@@ -7,7 +7,19 @@ class Solution:
 
     @staticmethod
     def longestIncreasingPath(matrix: [[int]]) -> int:
-        return len(matrix)
+        m, n = len(matrix), len(matrix[0])
+
+        def dfs(row: int, col: int) -> int:
+            val = matrix[row][col]
+            dfs_up = dfs(row - 1, col) if 0 <= row - 1 < m and val < matrix[row - 1][col] else 0
+            dfs_down = dfs(row + 1, col) if 0 <= row + 1 < m and val < matrix[row + 1][col] else 0
+            dfs_left = dfs(row, col - 1) if 0 <= col - 1 < m and val < matrix[row][col - 1] else 0
+            dfs_right = dfs(row, col + 1) if 0 <= col + 1 < m and val < matrix[row][col + 1] else 0
+            dp[row][col] = 1 + max(dfs_up, dfs_down, dfs_left, dfs_right)
+            return dp[row][col]
+
+        dp = [[0] * n for _ in range(m)]
+        return max(dfs(r, c) for r in range(m) for c in range(n))
 
 
 assert Solution.longestIncreasingPath(matrix=[[9, 9, 4], [6, 6, 8], [2, 1, 1]]) == 4
