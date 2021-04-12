@@ -6,7 +6,8 @@ https://leetcode.com/problems/beautiful-arrangement-ii/
 class Solution:
     @staticmethod
     def constructArray(n: int, k: int) -> [int]:
-        remaining = [i for i in range(1, n + 1)][k + 1:]
+        remaining = [i for i in range(k + 2, n + 1)]
+        # print(remaining)
         current = 1  # start with 1
         sign = 1  # start with positive
         beautiful = [current]  # start with 1
@@ -16,10 +17,7 @@ class Solution:
             k -= 1  # decrease k
             sign = -sign  # switch sign
             # print(k, sign)
-        # print(beautiful)
-        beautiful += remaining
-        # print(beautiful)
-        return beautiful
+        return beautiful + remaining
 
 
 assert Solution.constructArray(n=8, k=1) == [1, 2, 3, 4, 5, 6, 7, 8]
@@ -42,3 +40,4 @@ assert Solution.constructArray(n=3, k=2) == [1, 3, 2]
 Explanation: The [1, 3, 2] has three different positive integers ranging from 1 to 3, 
 and the [2, 1] has exactly 2 distinct integers: 1 and 2.
 """
+assert Solution.constructArray(n=2, k=1) == [1, 2]
