@@ -15,27 +15,20 @@ class Solution:
     @staticmethod
     def deepestLeavesSum(root: TreeNode) -> int:
         # find depth of the root
-        def pre_order_depth(tree: TreeNode, current_depth=0) -> int:
-            # print("Visited: ", tree.val)
-            if tree.left or tree.right:
-                current_depth += 1
-            left_depth = pre_order_depth(tree.left) if tree.left else 0
-            right_depth = pre_order_depth(tree.right) if tree.right else 0
-            return current_depth + max(left_depth, right_depth)
+        def pre_order_depth(tree: TreeNode) -> int:
+            return 1 + max(pre_order_depth(tree.left), pre_order_depth(tree.right)) if tree else 0
 
         # find all the nodes at that depth (deepest leaves)
-        def nodes_sum_at_depth(tree: TreeNode, target_depth: int, current_depth=0, total_sum=0) -> int:
-            if current_depth == target_depth:
-                total_sum += tree.val
-            if tree.left or tree.right:
-                current_depth += 1
-            if tree.left:
-                total_sum = nodes_sum_at_depth(tree.left, target_depth, current_depth, total_sum)
-            if tree.right:
-                total_sum = nodes_sum_at_depth(tree.right, target_depth, current_depth, total_sum)
-            return total_sum
+        def sum_at_depth(tree: TreeNode, target_depth: int, current_depth=1) -> int:
+            if not tree:
+                return 0
+            elif current_depth == target_depth:
+                return tree.val
+            left_sum = sum_at_depth(tree.left, target_depth, current_depth + 1)
+            right_sum = sum_at_depth(tree.right, target_depth, current_depth + 1)
+            return left_sum + right_sum
 
-        return nodes_sum_at_depth(root, pre_order_depth(root))
+        return sum_at_depth(root, pre_order_depth(root))
 
 
 assert Solution.deepestLeavesSum(TreeNode(val=23)) == 23
