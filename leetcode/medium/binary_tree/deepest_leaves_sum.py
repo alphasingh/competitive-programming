@@ -14,7 +14,11 @@ class TreeNode:
 class Solution:
     @staticmethod
     def deepestLeavesSum(root: TreeNode) -> int:
-        return root.val
+        deepest_leaves_sum = 0
+        current_node = root
+        # find depth of the root
+        # find all the nodes at that depth (deepest leaves)
+        return deepest_leaves_sum
 
 
 assert Solution.deepestLeavesSum(TreeNode(val=1,
