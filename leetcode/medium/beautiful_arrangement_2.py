@@ -6,18 +6,15 @@ https://leetcode.com/problems/beautiful-arrangement-ii/
 class Solution:
     @staticmethod
     def constructArray(n: int, k: int) -> [int]:
-        remaining = [i for i in range(k + 2, n + 1)]
-        # print(remaining)
         current = 1  # start with 1
         sign = 1  # start with positive
         beautiful = [current]  # start with 1
-        while k > 0:
-            current += k * sign
+        for ki in range(k, 0, -1):
+            current += ki * sign
             beautiful.append(current)
-            k -= 1  # decrease k
             sign = -sign  # switch sign
             # print(k, sign)
-        return beautiful + remaining
+        return beautiful + [i for i in range(k + 2, n + 1)]
 
 
 assert Solution.constructArray(n=8, k=1) == [1, 2, 3, 4, 5, 6, 7, 8]
