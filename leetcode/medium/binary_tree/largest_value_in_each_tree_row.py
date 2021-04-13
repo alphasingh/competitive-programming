@@ -14,20 +14,23 @@ class TreeNode:
 class Solution:
     @staticmethod
     def largestValues(root: TreeNode = None) -> [int]:
-        # find depth of the root
-        def pre_order_depth(tree: TreeNode) -> int:
-            return 1 + max(pre_order_depth(tree.left), pre_order_depth(tree.right)) if tree else 0
+        max_values = dict()
 
-        def max_at_depth(tree: TreeNode, m: [int], current_depth=0):
+        def max_at_depth(tree: TreeNode, current_depth=0):
             if not tree:
                 return
-            m[current_depth] = max(tree.val, m[current_depth])
-            max_at_depth(tree.left, m, current_depth + 1)
-            max_at_depth(tree.right, m, current_depth + 1)
+            if current_depth not in max_values:
+                max_values[current_depth] = tree.val
+            else:
+                max_values[current_depth] = max(tree.val, max_values[current_depth])
+            if tree.left:
+                max_at_depth(tree.left, current_depth + 1)
+            if tree.right:
+                max_at_depth(tree.right, current_depth + 1)
 
-        max_values = [-2147483650] * pre_order_depth(root)
-        max_at_depth(root, max_values)
-        return max_values
+        max_at_depth(root)
+        # print(max_values)
+        return [max_values[depth] for depth in range(len(max_values))]
 
 
 assert Solution.largestValues() == []
