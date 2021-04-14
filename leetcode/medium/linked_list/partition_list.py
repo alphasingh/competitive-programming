@@ -5,9 +5,9 @@ https://leetcode.com/problems/partition-list/
 
 # Definition for singly-linked list.
 class ListNode:
-    def __init__(self, val=0, next=None):
+    def __init__(self, val=0, next_node=None):
         self.val = val
-        self.next = next
+        self.next = next_node
 
     def __str__(self):
         return str(self.val) + "->" + str(self.next)
@@ -15,7 +15,7 @@ class ListNode:
 
 class Solution:
     @staticmethod
-    def list_to_node(array: [int]) -> ListNode:
+    def list_to_node(array: [int]):
         result = None
         size = len(array)
         if size == 0:
@@ -49,15 +49,19 @@ class Solution:
         return Solution.list_to_node(merged)
 
 
-head1 = ListNode(1, next=ListNode(4, next=ListNode(3, next=ListNode(2, next=ListNode(5, next=ListNode(2))))))
-out1 = ListNode(1, next=ListNode(2, next=ListNode(2, next=ListNode(4, next=ListNode(3, next=ListNode(5))))))
+head1 = ListNode(1, next_node=ListNode(4, next_node=ListNode(3, next_node=ListNode(2, next_node=ListNode(5,
+                                                                                                         next_node=ListNode(
+                                                                                                             2))))))
+out1 = ListNode(1, next_node=ListNode(2, next_node=ListNode(2, next_node=ListNode(4, next_node=ListNode(3,
+                                                                                                        next_node=ListNode(
+                                                                                                            5))))))
 assert str(Solution.partition(head=head1, x=3)) == str(out1)
 """
 Input: head = [1,4,3,2,5,2], x = 3
 Output: [1,2,2,4,3,5]
 """
-head2 = ListNode(2, next=ListNode(1))
-out2 = ListNode(1, next=ListNode(2))
+head2 = ListNode(2, next_node=ListNode(1))
+out2 = ListNode(1, next_node=ListNode(2))
 assert str(Solution.partition(head=head2, x=2)) == str(out2)
 """
 Input: head = [2,1], x = 2
