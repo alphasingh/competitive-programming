@@ -9,9 +9,12 @@ class Solution:
 
     @staticmethod
     def entityParser(text: str) -> str:
-        entities = {"&quot;": "\"", "&apos;": "\'", "&gt;": ">", "&lt;": "<", "&frasl;": "/", "&amp;": "&"}
-        for entity in entities:
-            text = re.sub(rf"{entity}", entities[entity], text)
+        text = re.sub(rf"&quot;", "\"", text)
+        text = re.sub(rf"&apos;", "\'", text)
+        text = re.sub(rf"&gt;", ">", text)
+        text = re.sub(rf"&lt;", "<", text)
+        text = re.sub(rf"&frasl;", "/", text)
+        text = re.sub(rf"&amp;", "&", text)
         return text
 
 
