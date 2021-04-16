@@ -7,16 +7,15 @@ class Solution:
 
     @staticmethod
     def removeDuplicates(s: str, k: int) -> str:
-        # counter = {alphabet: 0 for alphabet in 'abcdefghijklmnopqrstuvwxyz'}
-        stack = list()
-        for ch in s:
-            stack.append(ch)
-            last_k = stack[-k:]
-            # print(stack, last_k)
-            if len(last_k) == k and len(set(last_k)) == 1:
-                stack = stack[:-k]
-        # print(stack)
-        return "".join(stack)
+        stack = [["0", 0]]  # character, count
+        for character in s:
+            if stack[-1][0] == character:  # is on top of stack
+                stack[-1][1] += 1
+                if stack[-1][1] == k:
+                    stack.pop()
+            else:
+                stack.append([character, 1])
+        return "".join(character * count for character, count in stack)
 
 
 assert Solution.removeDuplicates(s="abcd", k=2) == "abcd"
