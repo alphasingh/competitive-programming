@@ -7,20 +7,16 @@ class Solution:
 
     @staticmethod
     def removeDuplicates(s: str, k: int) -> str:
-        result = s
-        removal_start = 0
-        # print("k:", k)
-        length_of_result = len(result)
-        while removal_start <= length_of_result - k:
-            to_be_removed = result[removal_start:removal_start + k]
-            # print(result, length_of_result, to_be_removed)
-            if len(to_be_removed) == k and len(set(to_be_removed)) == 1:  # k adjacent duplicates
-                length_of_result -= k
-                result = result[:removal_start] + result[removal_start + k:]
-                removal_start = 0
-            else:
-                removal_start += 1
-        return result
+        # counter = {alphabet: 0 for alphabet in 'abcdefghijklmnopqrstuvwxyz'}
+        stack = list()
+        for ch in s:
+            stack.append(ch)
+            last_k = stack[-k:]
+            # print(stack, last_k)
+            if len(last_k) == k and len(set(last_k)) == 1:
+                stack = stack[:-k]
+        # print(stack)
+        return "".join(stack)
 
 
 assert Solution.removeDuplicates(s="abcd", k=2) == "abcd"
