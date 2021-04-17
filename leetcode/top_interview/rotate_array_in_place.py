@@ -4,7 +4,8 @@ https://leetcode.com/problems/battleships-in-a-board/
 
 
 class Solution:
-    def rotate(self, matrix: [[int]]) -> None:
+    @staticmethod
+    def rotate(matrix: [[int]]) -> None:
         n = len(matrix)
         for row in range(n // 2):
             matrix[row], matrix[n - row - 1] = matrix[n - row - 1], matrix[row]
