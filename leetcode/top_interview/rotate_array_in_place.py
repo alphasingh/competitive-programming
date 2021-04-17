@@ -5,10 +5,15 @@ https://leetcode.com/problems/battleships-in-a-board/
 
 class Solution:
     def rotate(self, matrix: [[int]]) -> None:
-        matrix[0] = [7, 4, 1]
-        matrix[1] = [8, 5, 2]
-        matrix[2] = [9, 6, 3]
-        print(matrix)
+        n = len(matrix)
+        for row in range(n // 2):
+            matrix[row], matrix[n - row - 1] = matrix[n - row - 1], matrix[row]
+        # print(matrix)
+        for r in range(n):
+            for c in range(n):
+                if r < c:
+                    matrix[r][c], matrix[c][r] = matrix[c][r], matrix[r][c]
+        # print(matrix)
 
 
 sol = Solution()
