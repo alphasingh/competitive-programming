@@ -6,7 +6,18 @@ https://leetcode.com/contest/weekly-contest-236/problems/sign-of-the-product-of-
 class Solution:
     @staticmethod
     def arraySign(nums: [int]) -> int:
-        return len(nums)
+        def signFunc(x):
+            if x > 0:
+                return 1
+            elif x < 0:
+                return -1
+            else:
+                return 0
+
+        array_sign = 1
+        for num in nums:
+            array_sign *= signFunc(num)
+        return array_sign
 
 
 assert Solution.arraySign(nums=[-1, -2, -3, -4, 3, 2, 1]) == 1
