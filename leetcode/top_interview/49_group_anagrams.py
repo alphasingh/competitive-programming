@@ -9,8 +9,7 @@ class Solution:
         groups = dict()
         for string in strs:
             anagram_hash = tuple(sorted(string)).__hash__()
-            if anagram_hash not in groups:
-                groups[anagram_hash] = []
+            groups.setdefault(anagram_hash, [])
             groups[anagram_hash].append(string)
         # print(list(groups.values()))
         return list(groups.values())
