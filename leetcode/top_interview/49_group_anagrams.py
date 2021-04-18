@@ -8,10 +8,10 @@ class Solution:
     def groupAnagrams(self, strs: [str]) -> [[str]]:
         groups = dict()
         for string in strs:
-            counter = tuple(sorted(string))
-            if counter not in groups:
-                groups[counter] = []
-            groups[counter].append(string)
+            anagram_hash = tuple(sorted(string)).__hash__()
+            if anagram_hash not in groups:
+                groups[anagram_hash] = []
+            groups[anagram_hash].append(string)
         # print(list(groups.values()))
         return list(groups.values())
 
