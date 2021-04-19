@@ -5,7 +5,7 @@ https://leetcode.com/problems/kth-largest-element-in-an-array/
 
 class Solution:
     def findKthLargest(self, nums: [int], k: int) -> int:
-        return len(nums) + k
+        return sorted(nums, reverse=True)[k - 1]
 
 
 sol = Solution()
