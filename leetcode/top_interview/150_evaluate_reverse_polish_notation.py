@@ -5,8 +5,39 @@ https://leetcode.com/problems/evaluate-reverse-polish-notation/
 
 class Solution:
 
+    @staticmethod
+    def perform_operation(a: int, b: int, operator: str) -> int:
+        result = 0
+        if operator == '+':
+            result = a + b
+        elif operator == '*':
+            result = a * b
+        elif operator == '/':
+            # print('division', a, b, a // b)
+            # print('division', abs(a), abs(b), a // b)
+            result = a // b
+            if (abs(a) // b) == 0 or (a // abs(b)) == 0:
+                result = 0
+        return result
+
+    @staticmethod
+    def is_token_operator(token: str) -> bool:
+        return token in ('+', '-', '*', '/')
+
     def evalRPN(self, tokens: [str]) -> int:
-        evaluation = len(tokens)
+        evaluation = 0
+        stack = []
+        for token in tokens:
+            # print(stack)
+            if self.is_token_operator(token):
+                last = int(stack.pop())
+                second_last = int(stack.pop())
+                result = self.perform_operation(second_last, last, token)
+                stack.append(str(result))
+            else:
+                stack.append(token)
+        # print(stack)
+        evaluation = int(stack.pop())
         return evaluation
 
 
