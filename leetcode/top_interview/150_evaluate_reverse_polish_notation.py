@@ -5,38 +5,23 @@ https://leetcode.com/problems/evaluate-reverse-polish-notation/
 
 class Solution:
 
-    @staticmethod
-    def perform_operation(a: int, b: int, operator: str) -> int:
-        result = 0
-        if operator == '+':
-            result = a + b
-        elif operator == '*':
-            result = a * b
-        elif operator == '/':
-            result = int(float(a) / b)
-        elif operator == '-':
-            result = a - b
-        return result
-
-    @staticmethod
-    def is_token_operator(token: str) -> bool:
-        return token in ('+', '-', '*', '/')
-
     def evalRPN(self, tokens: [str]) -> int:
-        evaluation = 0
         stack = []
         for token in tokens:
-            # print(stack)
-            if self.is_token_operator(token):
-                last = int(stack.pop())
-                second_last = int(stack.pop())
-                result = self.perform_operation(second_last, last, token)
+            if token in '+-*/':
+                right, left = int(stack.pop()), int(stack.pop())
+                if token == '+':
+                    result = left + right
+                elif token == '*':
+                    result = left * right
+                elif token == '/':
+                    result = int(float(left) / right)
+                else:
+                    result = left - right
                 stack.append(str(result))
             else:
                 stack.append(token)
-        # print(stack)
-        evaluation = int(stack.pop())
-        return evaluation
+        return int(stack.pop())
 
 
 sol = Solution()
