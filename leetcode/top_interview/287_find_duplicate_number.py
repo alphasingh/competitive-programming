@@ -7,16 +7,11 @@ class Solution:
 
     @staticmethod
     def findDuplicate(nums: [int]) -> int:
-        counter = [0 for _ in nums]
-        for num in nums:
-            counter[num - 1] += 1
-        # print(counter)
-        duplicate = 1
-        for num in nums:
-            if counter[num - 1] > 1:
-                duplicate = num
-                break
-        return duplicate
+        nums.sort()
+        for i in range(len(nums) - 1):
+            if nums[i] == nums[i + 1]:
+                return nums[i]
+        return 1
 
 
 sol = Solution()
