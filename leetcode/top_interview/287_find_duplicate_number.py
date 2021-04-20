@@ -14,3 +14,7 @@ class Solution:
 sol = Solution()
 
 assert sol.findDuplicate(nums=[1, 3, 4, 2, 2]) == 2
+assert sol.findDuplicate(nums=[3, 1, 3, 4, 2]) == 3
+assert sol.findDuplicate(nums=[1, 1]) == 1
+assert sol.findDuplicate(nums=[1, 1, 2]) == 1
+assert sol.findDuplicate(nums=[1, 3, 3]) == 3
