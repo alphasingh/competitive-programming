@@ -5,9 +5,9 @@ https://leetcode.com/problems/odd-even-linked-list/
 
 # Definition for singly-linked list.
 class ListNode:
-    def __init__(self, val=0, next=None):
+    def __init__(self, val=0, _next=None):
         self.val = val
-        self.next = next
+        self.next = _next
 
     def __str__(self):
         return str(self.val) + "->" + str(self.next)
@@ -16,7 +16,7 @@ class ListNode:
 class Solution:
 
     @staticmethod
-    def listToNode(array: [int]) -> ListNode:
+    def listToNode(array: [int]):
         length = len(array)
         if length == 0:
             return None
