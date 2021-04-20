@@ -2,8 +2,17 @@
 https://leetcode.com/problems/combination-sum-iv/
 """
 
+from collections import Counter
+
 
 class Solution:
+    factorial = [1, 1, 2]
+
+    def fact(self, number: int):
+        if number > len(self.factorial) - 1:
+            self.factorial.append(number * self.fact(number - 1))
+        # print(number, self.factorial)
+        return self.factorial[number]
 
     def dfs(self, nums: [int], start: int, target: int, path: [int], result: [[int]]):
         if target < 0:
@@ -23,8 +32,17 @@ class Solution:
     def combinationSum4(self, nums: [int], target: int) -> int:
         uniques = self.combinationSum(nums, target)
         permutations = 0
-        if target == 4:
-            permutations = 7
+        for unique in uniques:
+            counter = Counter(unique)
+            # print(counter)
+            current_permutations = len(unique)
+            # print("fact:", self.fact(current_permutations))
+            numerator = self.fact(current_permutations)
+            denominator = 1
+            for key in counter:
+                denominator *= self.fact(counter[key])
+            # print('num:', numerator, 'den', denominator)
+            permutations += numerator // denominator
         return permutations
 
 
