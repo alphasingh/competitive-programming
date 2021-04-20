@@ -12,8 +12,8 @@ class Node:
 
 class Solution:
     @staticmethod
-    def preorder(root: Node) -> [int]:
-        def preorder_dfs(_node: Node):
+    def preorder(root: 'Node') -> [int]:
+        def preorder_dfs(_node: 'Node'):
             if not _node:
                 return
             pre_order.append(_node.val)
