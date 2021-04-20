@@ -18,6 +18,8 @@ class Solution:
             result = a // b
             if (abs(a) // b) == 0 or (a // abs(b)) == 0:
                 result = 0
+        elif operator == '-':
+            result = a - b
         return result
 
     @staticmethod
@@ -42,6 +44,9 @@ class Solution:
 
 
 sol = Solution()
+
+assert sol.evalRPN(tokens=["2", "1", "+", "4", "-"]) == -1
+# Explanation: ((2 + 1) - 4) = -1
 
 assert sol.evalRPN(tokens=["2", "1", "+", "3", "*"]) == 9
 # Explanation: ((2 + 1) * 3) = 9
