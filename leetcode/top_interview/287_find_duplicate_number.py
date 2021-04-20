@@ -5,7 +5,8 @@ https://leetcode.com/problems/find-the-duplicate-number/
 
 class Solution:
 
-    def findDuplicate(self, nums: [int]) -> int:
+    @staticmethod
+    def findDuplicate(nums: [int]) -> int:
         counter = [0 for _ in nums]
         for num in nums:
             counter[num - 1] += 1
