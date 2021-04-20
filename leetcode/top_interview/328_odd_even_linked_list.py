@@ -30,15 +30,18 @@ class Solution:
 
     @staticmethod
     def oddEvenList(head: ListNode) -> ListNode:
-        position = 0  # starts from odd
-        result = [[], []]  # odds, evens
-        while head:
-            result[position % 2].append(head.val)
-            head = head.next
-            position += 1
-        # print(result)
-        result = Solution.listToNode(result[0] + result[1])
-        return result
+        if not head:
+            return head
+        odd = head
+        even = head.next
+        even_head = even
+        while even and even.next:
+            odd.next = odd.next.next
+            even.next = even.next.next
+            odd = odd.next
+            even = even.next
+        odd.next = even_head
+        return head
 
 
 # assert listToNode
