@@ -16,12 +16,35 @@ class ListNode:
 class Solution:
 
     @staticmethod
+    def listToNode(array: [int]) -> ListNode:
+        length = len(array)
+        if length == 0:
+            return None
+        node = ListNode(array[0])
+        current = node
+        for i in range(length - 1):
+            current.next = ListNode(array[i + 1])
+            current = current.next
+        # print(node)
+        return node
+
+    @staticmethod
     def oddEvenList(head: ListNode) -> ListNode:
-        result = head
+        position = 0  # starts from odd
+        result = [[], []]  # odds, evens
+        while head:
+            result[position % 2].append(head.val)
+            head = head.next
+            position += 1
+        # print(result)
+        result = Solution.listToNode(result[0] + result[1])
         return result
 
 
-example_in = ListNode(1, next=ListNode(2, next=ListNode(3, next=ListNode(4, next=ListNode(5)))))
-example_out = ListNode(1, next=ListNode(2, next=ListNode(3, next=ListNode(4, next=ListNode(5)))))
-assert str(Solution.oddEvenList(example_in)) == '1->2->3->4->5->None'
-# assert str(Solution.oddEvenList(example_in)) == '1->3->5->2->4->None'
+# assert listToNode
+assert str(Solution.listToNode([1, 3, 5, 2, 4])) == '1->3->5->2->4->None'
+assert str(Solution.listToNode([])) == 'None'
+
+# add TCs for oddEvenList
+assert str(Solution.oddEvenList(Solution.listToNode([1, 2, 3, 4, 5]))) == '1->3->5->2->4->None'
+assert str(Solution.oddEvenList(Solution.listToNode([2, 1, 3, 5, 6, 4, 7]))) == '2->3->6->7->1->5->4->None'
