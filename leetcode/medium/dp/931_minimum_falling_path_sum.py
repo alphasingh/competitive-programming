@@ -6,7 +6,12 @@ https://leetcode.com/problems/minimum-falling-path-sum/
 class Solution:
     @staticmethod
     def minFallingPathSum(matrix: [[int]]) -> int:  # bottom-up
-        dp = matrix[0]
+        dp = matrix[-1]
+        n = len(matrix)
+        for i in range(n - 2, -1, -2):
+            for j in range(n):
+                dp[j] = min(dp[i - 1], dp[i], dp[i + 1]) + matrix[i][j]
+        # print(dp)
         return dp[0]
 
 
