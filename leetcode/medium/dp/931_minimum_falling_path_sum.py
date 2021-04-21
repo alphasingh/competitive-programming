@@ -23,4 +23,4 @@ Explanation: The falling path with a minimum sum is underlined below:
 [[-19,57],
  [-40,-5]]
 """
-assert Solution.minFallingPathSum(matrix=[[-48]]) == -48
+assert Solution.minFallingPathSum([[-48]]) == -48
