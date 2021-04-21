@@ -6,10 +6,12 @@ https://leetcode.com/problems/triangle/
 class Solution:
     @staticmethod
     def minimumTotal(triangle: [[int]]) -> int:
-        minimum_total = 0
-        for row in triangle[::-1]:
-            minimum_total += min(row)
-        return minimum_total
+        dp = triangle[-1]  # last row as dp
+        for i in range(len(triangle) - 2, -1, -1):
+            for j in range(len(triangle[i])):
+                dp[j] = min(dp[j], dp[j + 1]) + triangle[i][j]
+        # print(dp)
+        return dp[0]
 
 
 assert Solution.minimumTotal([[2], [3, 4], [6, 5, 7], [4, 1, 8, 3]]) == 11
