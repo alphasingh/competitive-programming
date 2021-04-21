@@ -15,7 +15,7 @@ class Solution:
                 elif token == '*':
                     result = left * right
                 elif token == '/':
-                    result = int(float(left) / right)
+                    result = int(left / right)
                 else:
                     result = left - right
                 stack.append(str(result))
