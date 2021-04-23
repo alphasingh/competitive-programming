@@ -6,7 +6,24 @@ https://leetcode.com/problems/count-binary-substrings/
 class Solution:
     @staticmethod
     def countBinarySubstrings(s: str) -> int:
-        count = len(s)
+        count = 0
+        s += '#'  # to end the binary string
+        zeroes = ones = 0
+        size = len(s)
+        # print(s)
+        for i in range(size - 1):
+            if s[i] == '0':
+                zeroes += 1
+            elif s[i] == '1':
+                ones += 1
+            # print(i, 'zeroes', zeroes, 'ones', ones)
+            if s[i] != s[i + 1]:  # switch has occurred
+                count += min(zeroes, ones)
+                if s[i] == '0':
+                    ones = 0
+                elif s[i] == '1':
+                    zeroes = 0
+        # print(count)
         return count
 
 
