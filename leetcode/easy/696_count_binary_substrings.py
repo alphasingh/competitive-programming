@@ -8,21 +8,13 @@ class Solution:
     def countBinarySubstrings(s: str) -> int:
         count = 0
         s += '#'  # to end the binary string
-        zeroes = ones = 0
-        size = len(s)
-        # print(s)
-        for i in range(size - 1):
-            if s[i] == '0':
-                zeroes += 1
-            elif s[i] == '1':
-                ones += 1
-            # print(i, 'zeroes', zeroes, 'ones', ones)
+        pointer = 0
+        last = 0
+        for i in range(len(s) - 1):
             if s[i] != s[i + 1]:  # switch has occurred
-                count += min(zeroes, ones)
-                if s[i] == '0':
-                    ones = 0
-                elif s[i] == '1':
-                    zeroes = 0
+                count += min(last, i - pointer + 1)
+                last = i - pointer + 1
+                pointer = i + 1
         # print(count)
         return count
 
