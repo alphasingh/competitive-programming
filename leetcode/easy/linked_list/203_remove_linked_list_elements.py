@@ -35,7 +35,7 @@ class Solution:
             current = current.next
         return head_to_list
 
-    def removeElements(self, head: ListNode, val: int) -> ListNode:
+    def removeElements(self, val: int, head: ListNode = None) -> ListNode:
         # print(head)
         converted_to_list = self.convert_to_list(head)
         list_without_val = []
@@ -47,9 +47,9 @@ class Solution:
 
 
 sol = Solution()
-assert sol.removeElements(ListNode(7, ListNode(7, ListNode(7, ListNode(7)))), val=7) is None
-assert sol.removeElements(None, val=17) is None
+assert sol.removeElements(val=7, head=ListNode(7, ListNode(7, ListNode(7, ListNode(7))))) is None
+assert sol.removeElements(val=17) is None
 
 input_example = ListNode(1, ListNode(2, ListNode(6, ListNode(4, ListNode(5, ListNode(6))))))
 output_example = ListNode(1, ListNode(2, ListNode(4, ListNode(5))))
-assert str(sol.removeElements(input_example, val=6)) == str(output_example)
+assert str(sol.removeElements(val=6, head=input_example)) == str(output_example)
