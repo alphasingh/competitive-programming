@@ -14,41 +14,22 @@ class ListNode:
 
 
 class Solution:
-    @staticmethod
-    def convert_to_node(array: [int]) -> ListNode:
-        node = ListNode(array[0])
-        current = node
-        for e in array[1:]:
-            current.next = ListNode(e)
-            current = current.next
-        # print(node)
-        return node
 
-    @staticmethod
-    def convert_to_list(head: ListNode) -> [int]:
-        if not head:
-            return []
-        current = head
-        head_to_list = []
-        while current:
-            head_to_list.append(current.val)
-            current = current.next
-        return head_to_list
-
-    def removeElements(self, val: int, head: ListNode = None) -> ListNode:
-        # print(head)
-        converted_to_list = self.convert_to_list(head)
-        list_without_val = []
-        for element in converted_to_list:
-            if element != val:
-                list_without_val.append(element)
-        # print('list_without_val', list_without_val)
-        return self.convert_to_node(list_without_val) if list_without_val else None
+    def removeElements(self, head: 'ListNode', val: int) -> 'ListNode':
+        start = ListNode(-1, head)
+        pointer = start
+        while pointer.next:
+            if pointer.next.val == val:  # skip pointer next
+                pointer.next = pointer.next.next
+            else:
+                pointer = pointer.next
+        # print(start)
+        return start.next
 
 
 sol = Solution()
 assert sol.removeElements(val=7, head=ListNode(7, ListNode(7, ListNode(7, ListNode(7))))) is None
-assert sol.removeElements(val=17) is None
+assert sol.removeElements(None, val=19) is None
 
 input_example = ListNode(1, ListNode(2, ListNode(6, ListNode(4, ListNode(5, ListNode(6))))))
 output_example = ListNode(1, ListNode(2, ListNode(4, ListNode(5))))
