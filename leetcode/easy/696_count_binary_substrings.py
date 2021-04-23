@@ -12,8 +12,9 @@ class Solution:
         last = 0
         for i in range(len(s) - 1):
             if s[i] != s[i + 1]:  # switch has occurred
-                count += min(last, i - pointer + 1)
-                last = i - pointer + 1
+                current = i - pointer + 1
+                count += min(last, current)
+                last = current
                 pointer = i + 1
         # print(count)
         return count
