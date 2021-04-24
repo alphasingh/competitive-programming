@@ -11,10 +11,11 @@ class Solution:
         left, right = 0, len(height) - 1
         width = right
         while left < right:
-            max_area = max(max_area, min(height[left], height[right]) * width)
             if height[left] < height[right]:
+                max_area = max(max_area, height[left] * width)
                 left += 1
             else:
+                max_area = max(max_area, height[right] * width)
                 right -= 1
             width -= 1
         # print(indexes)
