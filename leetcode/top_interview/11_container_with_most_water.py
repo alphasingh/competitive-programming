@@ -8,26 +8,15 @@ class Solution:
     @staticmethod
     def maxArea(height: [int]) -> int:
         max_area = 0
-        indexes = {h: list() for h in set(height)}
-        total_width = len(height)
-        for index, height_on_index in enumerate(height):
-            indexes[height_on_index].append(index)
-        sorted_heights = sorted(height)
-        for i in range(total_width):
-            one, two = sorted_heights[i], height[i]
-            height_of_container = min(one, two)
-            one_end = abs(indexes[one][-1] - indexes[two][0])
-            two_end = abs(indexes[one][0] - indexes[two][-1])
-            width_of_container = max(one_end, two_end)
-            max_area = max(max_area, height_of_container * width_of_container)
-        sorted_heights.reverse()
-        for i in range(total_width):
-            one, two = sorted_heights[i], height[i]
-            height_of_container = min(one, two)
-            one_end = abs(indexes[one][-1] - indexes[two][0])
-            two_end = abs(indexes[one][0] - indexes[two][-1])
-            width_of_container = max(one_end, two_end)
-            max_area = max(max_area, height_of_container * width_of_container)
+        left, right = 0, len(height) - 1
+        width = right
+        while left < right:
+            max_area = max(max_area, min(height[left], height[right]) * width)
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
+            width -= 1
         # print(indexes)
         return max_area
 
