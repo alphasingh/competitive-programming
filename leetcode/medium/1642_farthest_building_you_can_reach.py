@@ -2,6 +2,8 @@
 https://leetcode.com/problems/furthest-building-you-can-reach/
 """
 
+import bisect
+
 
 class Solution:
 
@@ -9,21 +11,25 @@ class Solution:
     def furthestBuilding(heights: [int], bricks: int, ladders: int) -> int:
         farthest_building = 0
         # print(heights)
+        jumps = []
         while farthest_building < len(heights) - 1:
+            # print(jumps)
             height_difference = heights[farthest_building + 1] - heights[farthest_building]
             # print(height_difference, 'L:', ladders, 'B:', bricks)
             if height_difference > 0:  # next building is taller
-                if bricks - height_difference >= 0:  # use bricks if possible
-                    bricks -= height_difference
-                elif ladders:  # try to finish ladders first
-                    ladders -= 1
-                else:
-                    break
-            farthest_building += 1
+                bisect.insort_right(jumps, height_difference)
+            # print(jumps, jumps[:-ladders])
+            bricks_needed = sum(jumps[:-ladders])
+            # print(bricks_needed)
+            if bricks_needed <= bricks:
+                farthest_building += 1
+            else:
+                break
         # print(farthest_building)
         return farthest_building
 
 
+assert Solution.furthestBuilding(heights=[8, 18, 6, 11, 7, 22, 24, 7, 23], bricks=10, ladders=2) == 7
 assert Solution.furthestBuilding(heights=[4, 12, 2, 7, 3, 18, 20, 3, 19], bricks=10, ladders=2) == 7
 assert Solution.furthestBuilding(heights=[14, 3, 19, 3], bricks=17, ladders=0) == 3
 assert Solution.furthestBuilding(heights=[4, 2, 7, 6, 9, 14, 12], bricks=5, ladders=1) == 4
@@ -37,5 +43,5 @@ It is impossible to go beyond building 4 because you do not have any more bricks
 """
 assert Solution.furthestBuilding(heights=[3, 19, 4, 14, 2, 7, 3, 18, 20], bricks=10, ladders=2) == 6
 assert Solution.furthestBuilding(heights=[4, 7, 15, 3, 8, 4, 19, 21, 4, 7], bricks=10, ladders=2) == 8
-assert Solution.furthestBuilding(heights=[8, 18, 6, 11, 7, 22, 24, 7, 23], bricks=10, ladders=2) == 7
 assert Solution.furthestBuilding(heights=[6, 16, 4, 9, 5, 20, 22, 5, 8], bricks=10, ladders=2) == 8
+assert Solution.furthestBuilding(heights=[1, 2], bricks=0, ladders=0) == 0
