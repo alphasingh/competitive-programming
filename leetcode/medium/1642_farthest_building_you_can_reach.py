@@ -35,4 +35,7 @@ Explanation: Starting at building 0, you can follow these steps:
 - Go to building 4 using your only ladder. You must use either bricks or ladders because 6 < 9.
 It is impossible to go beyond building 4 because you do not have any more bricks or ladders.
 """
-assert Solution.furthestBuilding(heights=[4, 14, 2, 7, 3, 18, 20, 3, 19], bricks=10, ladders=2) == 7
+assert Solution.furthestBuilding(heights=[3, 19, 4, 14, 2, 7, 3, 18, 20], bricks=10, ladders=2) == 6
+assert Solution.furthestBuilding(heights=[4, 7, 15, 3, 8, 4, 19, 21, 4, 7], bricks=10, ladders=2) == 8
+assert Solution.furthestBuilding(heights=[8, 18, 6, 11, 7, 22, 24, 7, 23], bricks=10, ladders=2) == 7
+assert Solution.furthestBuilding(heights=[6, 16, 4, 9, 5, 20, 22, 5, 8], bricks=10, ladders=2) == 8
