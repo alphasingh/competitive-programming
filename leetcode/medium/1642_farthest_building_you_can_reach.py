@@ -8,13 +8,14 @@ import bisect
 class Solution:
 
     @staticmethod
-    def furthestBuilding_binarySearch(H, bricks, L):
+    def furthestBuilding_binarySearch(heights, bricks, ladders):
         def isReach(k):
-            to_climb = [y - x for y, x in zip(H[1:k + 1], H[:k + 1]) if y - x > 0]
-            return len(to_climb) <= L or sum(sorted(to_climb)[::-1][L:]) <= bricks
+            to_climb = [y - x for y, x in zip(heights[1:k + 1], heights[:k + 1]) if y - x > 0]
+            print(to_climb)
+            return len(to_climb) <= ladders or sum(sorted(to_climb)[::-1][ladders:]) <= bricks
 
-        H += [float("inf")]
-        beg, end = 0, len(H) - 1
+        heights += [float("inf")]
+        beg, end = 0, len(heights) - 1
         while beg + 1 < end:
             mid = (beg + end) // 2
             if isReach(mid):
@@ -45,7 +46,7 @@ class Solution:
         return farthest_building
 
 
-assert Solution.furthestBuilding(heights=[8, 18, 6, 11, 7, 22, 24, 7, 23], bricks=10, ladders=2) == 7
+assert Solution.furthestBuilding_binarySearch(heights=[8, 18, 6, 11, 7, 22, 24, 7, 23], bricks=10, ladders=2) == 7
 assert Solution.furthestBuilding(heights=[4, 12, 2, 7, 3, 18, 20, 3, 19], bricks=10, ladders=2) == 7
 assert Solution.furthestBuilding(heights=[14, 3, 19, 3], bricks=17, ladders=0) == 3
 assert Solution.furthestBuilding(heights=[4, 2, 7, 6, 9, 14, 12], bricks=5, ladders=1) == 4
