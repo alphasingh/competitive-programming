@@ -45,6 +45,8 @@ class Solution:
         return farthest_building
 
 
+assert Solution.furthestBuilding_binarySearch(heights=[1, 1_000_000, 1_000_000], bricks=0, ladders=2) == 2
+assert Solution.furthestBuilding_binarySearch(heights=[1, 555_999, 1_000_000], bricks=999_999, ladders=0) == 2
 assert Solution.furthestBuilding_binarySearch(heights=[8, 18, 6, 11, 7, 22, 24, 7, 23], bricks=10, ladders=2) == 7
 assert Solution.furthestBuilding(heights=[4, 12, 2, 7, 3, 18, 20, 3, 19], bricks=10, ladders=2) == 7
 assert Solution.furthestBuilding(heights=[14, 3, 19, 3], bricks=17, ladders=0) == 3
