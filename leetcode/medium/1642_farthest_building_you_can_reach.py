@@ -8,6 +8,22 @@ import bisect
 class Solution:
 
     @staticmethod
+    def furthestBuilding_binarySearch(H, bricks, L):
+        def isReach(k):
+            to_climb = [y - x for y, x in zip(H[1:k + 1], H[:k + 1]) if y - x > 0]
+            return len(to_climb) <= L or sum(sorted(to_climb)[::-1][L:]) <= bricks
+
+        H += [float("inf")]
+        beg, end = 0, len(H) - 1
+        while beg + 1 < end:
+            mid = (beg + end) // 2
+            if isReach(mid):
+                beg = mid
+            else:
+                end = mid
+        return beg
+
+    @staticmethod
     def furthestBuilding(heights: [int], bricks: int, ladders: int) -> int:
         farthest_building = 0
         # print(heights)
@@ -19,7 +35,7 @@ class Solution:
             if height_difference > 0:  # next building is taller
                 bisect.insort_right(jumps, height_difference)
             # print(jumps, jumps[:-ladders])
-            bricks_needed = sum(jumps[:-ladders])
+            bricks_needed = sum(jumps[:-ladders]) if ladders else sum(jumps)
             # print(bricks_needed)
             if bricks_needed <= bricks:
                 farthest_building += 1
