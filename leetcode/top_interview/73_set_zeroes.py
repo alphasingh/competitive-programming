@@ -8,20 +8,20 @@ class Solution:
     @staticmethod
     def setZeroes(matrix: [[int]]) -> None:
         # print(matrix)
-        rows, columns = set(), set()
         m, n = len(matrix), len(matrix[0])
         for i in range(m):
             for j in range(n):
                 if matrix[i][j] == 0:
-                    rows.add(i)
-                    columns.add(j)
-        # print(rows, columns)
-        for row in rows:
-            matrix[row] = [0] * n
-        # print(matrix)
-        for column in columns:
-            for row in range(m):
-                matrix[row][column] = 0
+                    for col in range(n):
+                        if matrix[i][col] != 0:
+                            matrix[i][col] = 0.1  # set row as 0.1
+                    for row in range(m):
+                        if matrix[row][j] != 0:
+                            matrix[row][j] = 0.1  # set column as 0.1
+        for i in range(m):
+            for j in range(n):
+                if matrix[i][j] == 0.1:
+                    matrix[i][j] = 0
         # print(matrix)
 
 
