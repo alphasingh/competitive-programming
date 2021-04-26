@@ -9,16 +9,15 @@ class Solution:
 
     @staticmethod
     def furthestBuilding_binarySearch(heights, bricks, ladders):
-        def isReach(k):
+        def can_reach(k):
             to_climb = [y - x for y, x in zip(heights[1:k + 1], heights[:k + 1]) if y - x > 0]
-            print(to_climb)
             return len(to_climb) <= ladders or sum(sorted(to_climb)[::-1][ladders:]) <= bricks
 
         heights += [float("inf")]
         beg, end = 0, len(heights) - 1
         while beg + 1 < end:
             mid = (beg + end) // 2
-            if isReach(mid):
+            if can_reach(mid):
                 beg = mid
             else:
                 end = mid
