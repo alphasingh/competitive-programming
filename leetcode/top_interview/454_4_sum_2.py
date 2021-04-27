@@ -2,6 +2,7 @@
 https://leetcode.com/problems/4sum-ii/
 """
 
+from itertools import product
 from collections import Counter
 
 
@@ -10,12 +11,11 @@ class Solution:
     @staticmethod
     def fourSumCount(nums1: [int], nums2: [int], nums3: [int], nums4: [int]) -> int:
         n, count = len(nums1), 0
-        for one in range(n):
-            for two in range(n):
-                for three in range(n):
-                    for four in range(n):
-                        if nums1[one] + nums2[two] + nums3[three] + nums4[four] == 0:
-                            count += 1
+        counter_1x2 = Counter(one + two for one, two in product(nums1, nums2))
+        counter_3x4 = Counter(three + four for three, four in product(nums3, nums4))
+        for value in counter_1x2:
+            if -value in counter_3x4:
+                count += counter_1x2[value] * counter_3x4[-value]
         return count
 
 
