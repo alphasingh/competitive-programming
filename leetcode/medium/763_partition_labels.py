@@ -9,23 +9,17 @@ class Solution:
     def partitionLabels(S: str) -> [int]:
         partitions = [-1]
         indexes = {alphabet: list() for alphabet in set(S)}
-        for index, alphabet in enumerate(S):
-            indexes[alphabet].append(index)
-        # print(indexes)
+        [indexes[alphabet].append(index) for index, alphabet in enumerate(S)]
         start = end = 0
-        # print(len(S), S)
         while start <= end < len(S):
-            # print('start', start, 'end', end, 'current', S[start], indexes[S[start]][-1])
             end = max(end, indexes[S[start]][-1])
             if start == end:  # partition complete
                 partitions.append(end)
-                # print(partitions)
                 start = end + 1
                 end = start
             else:
                 start += 1
-        # print(partition_lengths)
-        return [partitions[i + 1] - partitions[i] for i in range(len(partitions) - 1)]
+        return [y - x for y, x in zip(partitions[1:], partitions)]
 
 
 assert Solution.partitionLabels(S="ababcbacadefegdehijhklij") == [9, 7, 8]
