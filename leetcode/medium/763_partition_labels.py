@@ -36,3 +36,6 @@ This is a partition so that each letter appears in at most one part.
 A partition like "ababcbacadefegde", "hijhklij" is incorrect, because it splits S into less parts.
 """
 assert Solution.partitionLabels(S="abcd") == [1, 1, 1, 1]
+assert Solution.partitionLabels(S="a") == [1]
+assert Solution.partitionLabels(S="aaaaaaaazzzzaaaaaaaaaaa") == [23]
+assert Solution.partitionLabels(S="aaaaaaaazzzzaaaaaaaaaaaf") == [23, 1]
