@@ -7,9 +7,7 @@ class Solution:
 
     @staticmethod
     def partitionLabels(S: str) -> [int]:
-        end, partitions, indexes = 0, [-1], {alphabet: 0 for alphabet in set(S)}
-        for index, alphabet in enumerate(S):
-            indexes[alphabet] = index
+        end, partitions, indexes = 0, [-1], {alphabet: index for index, alphabet in enumerate(S)}
         for current in range(len(S)):
             end = max(end, indexes[S[current]])
             if current == end:  # partition complete
