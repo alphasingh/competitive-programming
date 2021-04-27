@@ -7,18 +7,14 @@ class Solution:
 
     @staticmethod
     def partitionLabels(S: str) -> [int]:
-        partitions = [-1]
-        indexes = {alphabet: list() for alphabet in set(S)}
-        [indexes[alphabet].append(index) for index, alphabet in enumerate(S)]
-        start = end = 0
-        while start <= end < len(S):
-            end = max(end, indexes[S[start]][-1])
-            if start == end:  # partition complete
+        end, partitions, indexes = 0, [-1], {alphabet: 0 for alphabet in set(S)}
+        for index, alphabet in enumerate(S):
+            indexes[alphabet] = index
+        for current in range(len(S)):
+            end = max(end, indexes[S[current]])
+            if current == end:  # partition complete
                 partitions.append(end)
-                start = end + 1
-                end = start
-            else:
-                start += 1
+                end = current + 1
         return [y - x for y, x in zip(partitions[1:], partitions)]
 
 
