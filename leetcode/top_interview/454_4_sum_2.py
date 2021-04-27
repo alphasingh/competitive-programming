@@ -2,13 +2,20 @@
 https://leetcode.com/problems/4sum-ii/
 """
 
+from collections import Counter
+
 
 class Solution:
 
     @staticmethod
     def fourSumCount(nums1: [int], nums2: [int], nums3: [int], nums4: [int]) -> int:
-        n = len(nums1)
-        count = n + len(nums2) + len(nums3) + len(nums4)
+        n, count = len(nums1), 0
+        for one in range(n):
+            for two in range(n):
+                for three in range(n):
+                    for four in range(n):
+                        if nums1[one] + nums2[two] + nums3[three] + nums4[four] == 0:
+                            count += 1
         return count
 
 
