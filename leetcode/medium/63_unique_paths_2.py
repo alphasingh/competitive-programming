@@ -9,6 +9,7 @@ class Solution:
     def uniquePathsWithObstacles(obstacleGrid: [[int]]) -> int:
         m, n = len(obstacleGrid), len(obstacleGrid[0])
         path = [[1 for _ in range(n)] for _ in range(m)]
+        path[0][0] = 1 if not obstacleGrid[0][0] else 0  # is start allowed
         # decide for first row
         for c in range(1, n):
             path[0][c] = path[0][c - 1] if not obstacleGrid[0][c] else 0
@@ -31,3 +32,5 @@ There are two ways to reach the bottom-right corner:
 2. Down -> Down -> Right -> Right
 """
 assert Solution.uniquePathsWithObstacles(obstacleGrid=[[0, 1], [0, 0]]) == 1
+assert Solution.uniquePathsWithObstacles([[1]]) == 0
+assert Solution.uniquePathsWithObstacles([[0]]) == 1
