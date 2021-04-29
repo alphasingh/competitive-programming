@@ -43,3 +43,11 @@ assert input_example == [1, 2, 3, 6, 7, 8]
 input_example = [1, 2, 6, 8, 0, 0, 0, 0, 0]
 Solution.merge(nums1=input_example, m=4, nums2=[3, 7, 8, 9, 11], n=5)
 assert input_example == [1, 2, 3, 6, 7, 8, 8, 9, 11]
+
+input_example = [0]
+Solution.merge(nums1=input_example, m=0, nums2=[-1], n=1)
+assert input_example == [-1]
+
+input_example = [1, 0]
+Solution.merge(nums1=input_example, m=1, nums2=[-1], n=1)
+assert input_example == [-1, 1]
