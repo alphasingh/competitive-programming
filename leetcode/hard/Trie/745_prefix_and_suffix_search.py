@@ -14,7 +14,11 @@ class Trie:
         self.root = TrieNode()
 
     def insert(self, word: str, index: int) -> None:
-        pass
+        root = self.root
+        root.index = index
+        for symbol in word:
+            root = root.children.setdefault(symbol, TrieNode())
+            root.index = index
 
     def search(self, word: str) -> int:
         root = self.root
@@ -28,7 +32,10 @@ class Trie:
 class WordFilter:
     def __init__(self, words):
         self.trie = Trie()
-        root = self.trie
+        for index, word in enumerate(words):
+            long = word + '#' + word
+            for i in range(len(word)):
+                self.trie.insert(long[i:], index)
 
     def f(self, prefix, suffix):
         return self.trie.search(suffix + '#' + prefix)
