@@ -8,10 +8,15 @@ class Solution:
     @staticmethod
     def jump(nums: [int]) -> int:
         total_nums = len(nums)
-        jumps_needed = [0] * total_nums
-        position = 0  # start
+        jumps_needed = [total_nums] * total_nums
+        position = jumps_needed[0] = 0  # start
         while position < total_nums:
+            position_start = position + 1
+            max_position_possible = min(total_nums, position_start + nums[position])
+            for current in range(position_start, max_position_possible):
+                jumps_needed[current] = min(jumps_needed[current], nums[position] + 1)
             position += 1
+        print(jumps_needed)
         return jumps_needed[-1]
 
 
