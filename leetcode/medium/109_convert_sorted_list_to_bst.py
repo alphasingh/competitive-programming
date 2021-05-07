@@ -20,31 +20,25 @@ class TreeNode:
 
 class Solution:
 
+    def sortedArrayToBST(self, array: [int]) -> TreeNode:
+        if not array:
+            return None
+        mid = len(array) // 2
+        root = TreeNode(array[mid])
+        root.left = self.sortedArrayToBST(array[:mid])
+        root.right = self.sortedArrayToBST(array[mid + 1:])
+        return root
+
     def sortedListToBST(self, head: ListNode = None) -> TreeNode:
         if not head:
             return None
-        print(self)
         current = head
         flat_sorted_list = []
         while current:
             flat_sorted_list.append(current.val)
             current = current.next
         print(flat_sorted_list)
-        size_of_bst = len(flat_sorted_list)
-        binary_search_tree = TreeNode(flat_sorted_list[size_of_bst // 2])
-        current = binary_search_tree  # start from root
-        print("left", end=" ")
-        for i in range(size_of_bst // 2 - 1, -1, -1):  # left half
-            print(flat_sorted_list[i], end=" ")
-            current.left = TreeNode(flat_sorted_list[i])
-            current = current.left
-        print("\nright", end=" ")
-        current = binary_search_tree  # start from root
-        for i in range(size_of_bst // 2 + 1, size_of_bst):  # right half
-            print(flat_sorted_list[i], end=" ")
-            current.right = TreeNode(flat_sorted_list[i])
-            current = current.right
-        return binary_search_tree
+        return self.sortedArrayToBST(flat_sorted_list)
 
 
 sol = Solution()
