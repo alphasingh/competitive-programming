@@ -7,19 +7,21 @@ import heapq
 
 class Solution:
     def isPossible(self, target: [int]) -> bool:
-        current_sum = sum(target)
         ideal = len(target)
+        for i in range(ideal):
+            target[i] = -target[i]  # negate the elements to pop maximum from heap
         heapq.heapify(target)  # heapify
-        print(target)
-        while current_sum > ideal:  # reduce sum
+        current_sum = sum(target)
+        ideal = -ideal
+        # print(target, current_sum)
+        while current_sum < ideal:  # reduce sum
             current_max = heapq.heappop(target)
-            print('max', target, current_max)
+            # print('max', target, current_max)
             others = current_sum - current_max
             to_be_pushed = current_max - others
             current_sum -= others
             heapq.heappush(target, to_be_pushed)
-            print(target)
-        return current_sum == ideal
+        return current_sum == ideal and set(target) == {-1}
 
 
 sol = Solution()
