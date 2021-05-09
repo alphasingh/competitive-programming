@@ -16,15 +16,19 @@ class Solution:
         # print(target, current_sum)
         while current_sum < ideal:  # reduce sum
             current_max = heapq.heappop(target)
-            # print('max', target, current_max)
             others = current_sum - current_max
+            if current_max > others:
+                break
             to_be_pushed = current_max - others
             current_sum -= others
             heapq.heappush(target, to_be_pushed)
+            # print(target, 'sum', current_sum, 'max', current_max)
         return current_sum == ideal and set(target) == {-1}
 
 
 sol = Solution()
+assert sol.isPossible([1, 1000000000]) is True
+assert sol.isPossible([9, 9, 9]) is False
 assert sol.isPossible([9, 3, 5]) is True
 """
 Explanation: Start with [1, 1, 1] 
