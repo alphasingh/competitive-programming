@@ -27,3 +27,12 @@ class Solution:
             if left <= super_palindrome <= right:
                 count += 1
         return count
+
+
+sol = Solution()
+assert sol.superpalindromesInRange(left="4", right="1000") == 4
+"""
+Explanation: 4, 9, 121, and 484 are superpalindromes.
+Note that 676 is not a superpalindrome: 26 * 26 = 676, but 26 is not a palindrome.
+"""
+assert sol.superpalindromesInRange(left="1", right="2") == 1
