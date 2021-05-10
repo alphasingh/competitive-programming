@@ -19,9 +19,18 @@ class Solution:
         return True
 
     def countPrimes(self, n: int) -> int:
+        is_prime = [True] * n
+        if n > 1:
+            is_prime[0] = is_prime[1] = False
+        i = 2
+        while i * i < n:
+            if is_prime[i]:
+                for j in range(i * i, n, i):
+                    is_prime[j] = False
+            i += 1
         primes = 0
-        for i in range(n):
-            if self.isPrime(i):
+        for i in range(2, n):
+            if is_prime[i]:
                 primes += 1
         return primes
 
@@ -45,7 +54,7 @@ assert solution.countPrimes(1_00_000) == 9592
 assert solution.countPrimes(1_00_000) == 9592
 assert solution.countPrimes(1_000_000) == 78498
 assert solution.countPrimes(1_000_000) == 78498
-assert solution.countPrimes(5_000_000) == 78498
+assert solution.countPrimes(5_000_000) == 348513
 print(solution.isPrime.cache_info())
 end = time()
 print(f'Time taken {end - begin}')
