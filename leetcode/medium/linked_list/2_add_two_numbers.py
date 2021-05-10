@@ -40,3 +40,19 @@ L1 = ListNode(2, ListNode(4, ListNode(3)))
 L2 = ListNode(5, ListNode(6, ListNode(4)))
 SUM = ListNode(7, ListNode(0, ListNode(8)))
 assert str(Solution.addTwoNumbers(l1=L1, l2=L2)) == str(SUM)
+# Explanation: 342 + 465 = 807.
+
+L1 = ListNode(0)
+L2 = ListNode(0)
+SUM = ListNode(0)
+assert str(Solution.addTwoNumbers(l1=L1, l2=L2)) == str(SUM)
+
+L1 = ListNode(9)
+L2 = ListNode(9)
+SUM = ListNode(8, ListNode(1))
+assert str(Solution.addTwoNumbers(l1=L1, l2=L2)) == str(SUM)
+
+L1 = ListNode(9, ListNode(9, ListNode(9)))
+L2 = ListNode(9)
+SUM = ListNode(8, ListNode(0, ListNode(0, ListNode(1))))
+assert str(Solution.addTwoNumbers(l1=L1, l2=L2)) == str(SUM)
