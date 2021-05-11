@@ -7,8 +7,12 @@ class Solution:
 
     @staticmethod
     def maxScore(cardPoints: [int], k: int) -> int:
-        current_score = sum(cardPoints[k:])
+        length = len(cardPoints)
+        current_score = sum(cardPoints[:k])
         max_score = current_score
+        for slider in range(1, k + 1):
+            current_score -= cardPoints[k - slider] - cardPoints[length - slider]
+            max_score = max(max_score, current_score)
         return max_score
 
 
