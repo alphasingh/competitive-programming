@@ -4,7 +4,15 @@ https://www.codechef.com/APRIL21C/problems/SSCRIPT
 
 
 def contains_strong_language(string: str, stars: int) -> bool:
-    return '*' * stars in string
+    max_consecutive_stars = current = 0
+    for character in string:
+        if character == '*':
+            current += 1
+        else:
+            if current > max_consecutive_stars:
+                max_consecutive_stars = current
+            current = 0
+    return max(max_consecutive_stars, current) >= stars
 
 
 assert contains_strong_language('*a*b*', 2) is False
