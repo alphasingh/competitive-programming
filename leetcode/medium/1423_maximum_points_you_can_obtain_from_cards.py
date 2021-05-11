@@ -8,8 +8,7 @@ class Solution:
     @staticmethod
     def maxScore(cardPoints: [int], k: int) -> int:
         length = len(cardPoints)
-        current_score = sum(cardPoints[:k])
-        max_score = current_score
+        max_score = current_score = sum(cardPoints[:k])
         for slider in range(1, k + 1):
             current_score -= cardPoints[k - slider] - cardPoints[length - slider]
             max_score = max(max_score, current_score)
