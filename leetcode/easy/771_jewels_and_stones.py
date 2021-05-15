@@ -6,7 +6,9 @@ https://leetcode.com/problems/jewels-and-stones/
 class Solution:
     @staticmethod
     def numJewelsInStones(jewels: str, stones: str) -> int:
-        return len(jewels) + len(stones)
+        jewels = set(jewels)
+        # print(jewels)
+        return sum([stone in jewels for stone in stones])
 
 
 assert Solution.numJewelsInStones(jewels="aA", stones="aAAbbbb") == 3
