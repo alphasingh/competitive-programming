@@ -6,17 +6,12 @@ https://leetcode.com/problems/maximum-subarray/
 class Solution:
     @staticmethod
     def maxSubArray(nums: [int]) -> int:
-        c_sum = r_sum = 0
-        for num in nums:
-            r_sum += num
-            if r_sum > c_sum:
-                c_sum = r_sum
-            else:
-                if r_sum < 0:
-                    r_sum = 0
-        if c_sum == 0:
-            c_sum = max(nums)
-        return c_sum
+        dp = nums.copy()  # dp[i] will have max sub array till nums[i]
+        max_sum = nums[0]
+        for i in range(1, len(nums)):
+            dp[i] += dp[i - 1] if dp[i - 1] > 0 else 0
+            max_sum = max(dp[i], max_sum)
+        return max_sum
 
 
 assert Solution.maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]) == 6
