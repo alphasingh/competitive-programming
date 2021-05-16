@@ -22,18 +22,18 @@ class Solution:
 
         def dfs(node: TreeNode):
             if not node:
-                return 1
+                return 'covered'
             left_node = dfs(node.left)
             right_node = dfs(node.right)
-            if left_node == 0 or right_node == 0:
+            if left_node == 'uncovered' or right_node == 'uncovered':
                 self.cameras += 1
-                return 2
-            elif left_node == 2 or right_node == 2:
-                return 1
+                return 'camera'
+            elif left_node == 'camera' or right_node == 'camera':
+                return 'covered'
             else:
-                return 0
+                return 'uncovered'
 
-        if dfs(root) == 0:
+        if dfs(root) == 'uncovered':
             self.cameras += 1
         return self.cameras
 
