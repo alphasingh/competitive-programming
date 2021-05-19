@@ -7,7 +7,9 @@ class Solution:
 
     @staticmethod
     def minMoves2(nums: [int]) -> int:
-        return len(nums)
+        nums.sort()  # O(n*log(n))
+        running_moves = minimum_moves = sum(nums)  # O(n)
+        return minimum_moves
 
 
 assert Solution.minMoves2([1, 2, 3]) == 2
