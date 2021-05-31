@@ -8,6 +8,10 @@ class Solution:
     @staticmethod
     def maximumGap(nums: [int]) -> int:
         maximum_gap = 0
+        size = len(nums)
+        nums.sort()  # O(n*log(n))
+        for i in range(size - 1):
+            maximum_gap = max(maximum_gap, nums[i + 1] - nums[i])
         return maximum_gap
 
 
