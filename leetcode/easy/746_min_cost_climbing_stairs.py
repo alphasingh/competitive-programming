@@ -6,12 +6,14 @@ https://leetcode.com/problems/min-cost-climbing-stairs/
 class Solution:
     @staticmethod
     def minCostClimbingStairs(cost: [int]) -> int:
-        min_cost = 0
-        if len(cost) == 3:
-            min_cost = 15
-        else:
-            min_cost = 6
-        return min_cost
+        n = len(cost)
+        first = cost[0]
+        second = cost[1]
+        for i in range(2, n):
+            current = cost[i] + min(first, second)
+            first = second
+            second = current
+        return min(first, second)
 
 
 assert Solution.minCostClimbingStairs([10, 15, 20]) == 15
