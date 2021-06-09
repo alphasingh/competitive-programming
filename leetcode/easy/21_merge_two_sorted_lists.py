@@ -12,7 +12,7 @@ class ListNode:
 
 class Solution:
     @staticmethod
-    def mergeTwoLists(l1: ListNode, l2: ListNode) -> ListNode:
+    def mergeTwoLists(l1, l2):
         if not l1 and not l2:
             return None
         return ListNode()
