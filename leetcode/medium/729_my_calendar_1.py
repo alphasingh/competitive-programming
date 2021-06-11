@@ -10,12 +10,17 @@ class MyCalendar:
         self.bookings = []
 
     def book(self, start: int, end: int) -> bool:
-        self.starts.append(start)
-        # find position to insert and add to bookings
-        # self.bookings.insert()
-        if start == 15:
-            return False
-        return True
+        can_be_booked = True
+        for booking in self.bookings:
+            if booking[0] <= end < booking[1] or booking[0] <= start < booking[1]:
+                can_be_booked = False
+                break
+            elif start < booking[0] < end or start < booking[1] < end:
+                can_be_booked = False
+                break
+        if can_be_booked:
+            self.bookings.append([start, end])
+        return can_be_booked
 
 
 # Your MyCalendar object will be instantiated and called as such:
