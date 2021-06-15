@@ -30,3 +30,6 @@ You can take all the boxes of the first and second types, and one box of the thi
 The total number of units will be = (1 * 3) + (2 * 2) + (1 * 1) = 8.
 """
 assert Solution.maximumUnits(boxTypes=[[5, 10], [2, 5], [4, 7], [3, 9]], truckSize=10) == 91
+assert Solution.maximumUnits(boxTypes=[[1, 1]], truckSize=3) == 1
+assert Solution.maximumUnits(boxTypes=[[4, 1]], truckSize=3) == 3
+assert Solution.maximumUnits(boxTypes=[[4, 1_000_000]], truckSize=3) == 3_000_000
