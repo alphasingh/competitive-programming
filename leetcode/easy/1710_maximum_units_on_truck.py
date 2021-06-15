@@ -6,7 +6,17 @@ https://leetcode.com/problems/maximum-units-on-a-truck/
 class Solution:
     @staticmethod
     def maximumUnits(boxTypes: [[int]], truckSize: int) -> int:
-        maximum_units = truckSize + len(boxTypes)
+        maximum_units = 0
+        # boxTypes[i] = [numberOfBoxes[i], numberOfUnitsPerBox[i]]
+        # sort all boxes by numberOfUnitsPerBox in descending order
+        boxTypes.sort(key=lambda x: x[1], reverse=True)
+        for boxType in boxTypes:
+            if boxType[0] <= truckSize:
+                truckSize -= boxType[0]
+                maximum_units += boxType[0] * boxType[1]
+            else:
+                maximum_units += truckSize * boxType[1]
+                break
         return maximum_units
 
 
