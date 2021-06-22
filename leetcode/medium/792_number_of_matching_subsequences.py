@@ -2,10 +2,12 @@
 https://leetcode.com/problems/number-of-matching-subsequences/
 """
 
+from functools import lru_cache
+
 
 class Solution:
-    @staticmethod
-    def subsequence_exists(word: str, string: str):
+    @lru_cache()
+    def subsequence_exists(self, word: str, string: str) -> bool:
         pointer = 0
         pointer_limit = len(word)
         for char in string:
@@ -15,16 +17,16 @@ class Solution:
                 break
         return pointer_limit == pointer
 
-    @staticmethod
-    def numMatchingSubseq(s: str, words: [str]) -> int:
+    def numMatchingSubseq(self, s: str, words: [str]) -> int:
         matches = 0
         for word in words:
-            if Solution.subsequence_exists(word, s):
+            if self.subsequence_exists(word, s):
                 matches += 1
         return matches
 
 
-assert Solution.numMatchingSubseq(s="abcde", words=["a", "bb", "acd", "ace"]) == 3
+solution = Solution()
+assert solution.numMatchingSubseq(s="abcde", words=["a", "bb", "acd", "ace"]) == 3
 # Explanation: There are three strings in words that are a subsequence of s: "a", "acd", "ace".
 
-assert Solution.numMatchingSubseq(s="dsahjpjauf", words=["ahjpjau", "ja", "ahbwzgqnuk", "tnmlanowax"]) == 2
+assert solution.numMatchingSubseq(s="dsahjpjauf", words=["ahjpjau", "ja", "ahbwzgqnuk", "tnmlanowax"]) == 2
