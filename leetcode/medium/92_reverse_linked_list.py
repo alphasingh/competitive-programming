@@ -20,12 +20,17 @@ class Solution:
         while pointer:
             flat_list.append(pointer.val)
             pointer = pointer.next
-        print(flat_list)
-        reversed_ll = ListNode(head.val)  # start
+        # print(flat_list)
         left_list = flat_list[:left - 1]
-        reversed_list = flat_list[left - 1:right]
+        middle_list = flat_list[left - 1:right][::-1]  # reversed
         right_list = flat_list[right:]
-        print(left_list, reversed_list, right_list)
+        combined_list = left_list + middle_list + right_list
+        # print(combined_list)
+        reversed_ll = ListNode(combined_list.pop(0))  # start
+        pointer = reversed_ll
+        while combined_list:
+            pointer.next = ListNode(combined_list.pop(0))
+            pointer = pointer.next
         return reversed_ll
 
 
