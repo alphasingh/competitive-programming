@@ -7,15 +7,15 @@ class Solution:
     # 1 <= numRows <= 30
     @staticmethod
     def generate(numRows: int) -> [[int]]:
-        generations = [[1], [1, 1], [1, 2, 1]]
-        for row in range(3, numRows):
+        generations = [[1], [1, 1]]  # base cases
+        for row in range(2, numRows):
             last_generation = generations[-1]
-            new_generation = last_generation.copy()
+            adjacent_sums = []
             for i in range(len(last_generation) - 1):
                 adjacent_sum = last_generation[i] + last_generation[i + 1]
-                new_generation.insert(-1, adjacent_sum)
+                adjacent_sums.append(adjacent_sum)
+            new_generation = [1] + adjacent_sums + [1]
             generations.append(new_generation)
-            print(generations)
         return generations[:numRows]
 
 
