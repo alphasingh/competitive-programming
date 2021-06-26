@@ -2,15 +2,6 @@
 https://leetcode.com/problems/redundant-connection/
 """
 
-# Python program for Kruskal's algorithm to find
-# Minimum Spanning Tree of a given connected,
-# undirected and weighted graph
-
-from collections import defaultdict
-
-
-# Class to represent a graph
-
 
 class Graph:
 
@@ -34,21 +25,21 @@ class Graph:
     # A function that does union of two sets of x and y
     # (uses union by rank)
     def union(self, parent, rank, x, y):
-        xroot = self.find(parent, x)
-        yroot = self.find(parent, y)
+        x_root = self.find(parent, x)
+        y_root = self.find(parent, y)
 
         # Attach smaller rank tree under root of
         # high rank tree (Union by Rank)
-        if rank[xroot] < rank[yroot]:
-            parent[xroot] = yroot
-        elif rank[xroot] > rank[yroot]:
-            parent[yroot] = xroot
+        if rank[x_root] < rank[y_root]:
+            parent[x_root] = y_root
+        elif rank[x_root] > rank[y_root]:
+            parent[y_root] = x_root
 
         # If ranks are same, then make one as root
         # and increment its rank by one
         else:
-            parent[yroot] = xroot
-            rank[xroot] += 1
+            parent[y_root] = x_root
+            rank[x_root] += 1
 
     # The main function to construct MST using Kruskal's
     # algorithm
@@ -89,7 +80,7 @@ class Graph:
 
             # If including this edge does't
             # cause cycle, include it in result
-            # and increment the indexof result
+            # and increment the index of result
             # for next edge
             if x != y:
                 e = e + 1
@@ -97,12 +88,12 @@ class Graph:
                 self.union(parent, rank, x, y)
         # Else discard the edge
 
-        minimumCost = 0
+        minimum_cost = 0
         # print("Edges in the constructed MST")
         for u, v, weight in result:
-            minimumCost += weight
+            minimum_cost += weight
             # print("%d -- %d == %d" % (u, v, weight))
-        # print("Minimum Spanning Tree", minimumCost)
+        # print("Minimum Spanning Tree", minimum_cost)
         return result
 
 
