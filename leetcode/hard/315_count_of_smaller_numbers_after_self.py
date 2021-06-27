@@ -1,13 +1,19 @@
 """
 https://leetcode.com/problems/count-of-smaller-numbers-after-self/
 """
+from sortedcontainers import SortedList
 
 
 class Solution:
     @staticmethod
     def countSmaller(nums: [int]) -> [int]:
-        smaller = nums.copy()
-        return smaller
+        smaller = []
+        sorted_list = SortedList()
+        for num in nums[::-1]:  # start from the end
+            index = sorted_list.bisect_left(num)
+            sorted_list.add(num)
+            smaller.append(index)
+        return smaller[::-1]
 
 
 assert Solution.countSmaller(nums=[5, 2, 6, 1]) == [2, 1, 1, 0]
