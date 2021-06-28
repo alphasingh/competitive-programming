@@ -6,10 +6,14 @@ https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/
 class Solution:
     @staticmethod
     def removeDuplicates(s: str) -> str:
-        stack = ['a', 'j', 'x']
-        s.split()
+        stack = []
+        for character in s:
+            if stack and stack[-1] == character:
+                stack.pop()
+            else:
+                stack.append(character)
         result = ''.join(stack)
-        print(result)
+        # print(result)
         return result
 
 
