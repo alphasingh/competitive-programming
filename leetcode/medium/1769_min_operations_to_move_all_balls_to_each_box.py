@@ -7,10 +7,13 @@ class Solution:
     @staticmethod
     def minOperations(boxes: str) -> [int]:
         result = [0] * len(boxes)
-        if boxes == "110":
-            result = [1, 1, 3]
-        else:
-            result = [11, 8, 5, 4, 3, 4]
+        for box_index, ball_in_box in enumerate(boxes):
+            operations = 0
+            for box_2_index, ball_2_in_box in enumerate(boxes):
+                if ball_2_in_box == "1":
+                    operations += abs(box_index - box_2_index)
+            result[box_index] = operations
+        # print(result)
         return result
 
 
