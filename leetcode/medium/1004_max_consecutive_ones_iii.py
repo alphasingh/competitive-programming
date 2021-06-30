@@ -6,11 +6,19 @@ https://leetcode.com/problems/max-consecutive-ones-iii/
 class Solution:
     @staticmethod
     def longestOnes(nums: [int], k: int) -> int:
-        longest_ones = len(nums) + k
-        if k == 2:
-            longest_ones = 6
-        elif k == 3:
-            longest_ones = 10
+        longest_ones = 0
+        zeroes = [-1]
+        len_nums = len(nums)
+        for index, num in enumerate(nums):
+            if num == 0:
+                zeroes.append(index)
+        zeroes.append(len_nums)
+        # print(zeroes)
+        len_zeroes = len(zeroes)
+        for i in range(1, len_zeroes - k):
+            current = (zeroes[i + k] - 1) - (zeroes[i - 1] + 1) + 1
+            longest_ones = max(longest_ones, current)
+        # print(longest_ones)
         return longest_ones
 
 
