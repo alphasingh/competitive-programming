@@ -19,7 +19,7 @@ class Solution:
             current = (zeroes[i + k] - 1) - (zeroes[i - 1] + 1) + 1
             longest_ones = max(longest_ones, current)
         # print(longest_ones)
-        if k >= len_zeroes:
+        if k >= len_zeroes or len_zeroes == 2:
             longest_ones = len_nums
         return longest_ones
 
@@ -48,3 +48,9 @@ assert Solution.longestOnes(nums=[0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1
 assert Solution.longestOnes(nums=[0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1], k=8) == 19
 assert Solution.longestOnes(nums=[0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1], k=19) == 19
 assert Solution.longestOnes(nums=[0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1], k=1900) == 19
+assert Solution.longestOnes(nums=[0, 0, 0, 0], k=3) == 3
+assert Solution.longestOnes(nums=[0, 0, 0, 0], k=4) == 4
+assert Solution.longestOnes(nums=[0, 0, 0, 0], k=0) == 0
+assert Solution.longestOnes(nums=[1, 1, 1, 1], k=4) == 4
+assert Solution.longestOnes(nums=[1, 1, 1, 1], k=0) == 4
+assert Solution.longestOnes(nums=[1, 1, 1, 1], k=1) == 4
