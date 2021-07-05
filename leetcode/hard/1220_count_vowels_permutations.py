@@ -6,15 +6,11 @@ https://leetcode.com/problems/count-vowels-permutation/
 class Solution:
     @staticmethod
     def countVowelPermutation(n: int) -> int:
-        dp = [[0] * 5 for _ in range(n)]
-        dp[0] = [1, 1, 1, 1, 1]
-        for i in range(1, n):
-            dp[i][0] = dp[i - 1][1] + dp[i - 1][2] + dp[i - 1][4]  # a
-            dp[i][1] = dp[i - 1][0] + dp[i - 1][2]  # e
-            dp[i][2] = dp[i - 1][1] + dp[i - 1][3]  # i
-            dp[i][3] = dp[i - 1][2]  # o
-            dp[i][4] = dp[i - 1][2] + dp[i - 1][3]  # u
-        return sum(dp[n - 1]) % 1000000007
+        a = e = i = o = u = 1
+        mod = 1000000007
+        for _ in range(n - 1):
+            a, e, i, o, u = (e + i + u) % mod, (a + i) % mod, (e + o) % mod, i % mod, (i + o) % mod
+        return (a + e + i + o + u) % mod
 
 
 assert Solution.countVowelPermutation(1) == 5
