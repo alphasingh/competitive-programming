@@ -6,13 +6,22 @@ https://leetcode.com/problems/reduce-array-size-to-the-half/
 class Solution:
     @staticmethod
     def minSetSize(arr: [int]) -> int:
-        min_set_size = len(arr)
-        if [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] == arr:
-            min_set_size = 5
-        elif [3, 3, 3, 3, 5, 5, 5, 2, 2, 7] == arr:
-            min_set_size = 2
-        elif len(arr) > 0:
-            min_set_size = 1
+        min_set_size = 0
+        removed_array_size = 0
+        required_half_size = len(arr) // 2
+        frequencies = {}
+        for element in arr:
+            if element not in frequencies:
+                frequencies[element] = 0
+            frequencies[element] += 1
+        # print(frequencies)
+        for frequency in sorted(frequencies.values(), reverse=True):
+            if removed_array_size < required_half_size:
+                min_set_size += 1
+                removed_array_size += frequency
+            else:
+                break
+        # print(min_set_size)
         return min_set_size
 
 
