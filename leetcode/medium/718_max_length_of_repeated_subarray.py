@@ -24,8 +24,7 @@ class Solution:
                     if current_max > 0:
                         pointer2 -= 1
                         current_max = 0
-                # max_common_length = max(max_common_length, current_max)
-            max_common_length = max(max_common_length, current_max)
+                max_common_length = max(max_common_length, current_max)
         # print(max_common_length)
         return max_common_length
 
@@ -35,3 +34,4 @@ assert Solution.findLength(nums1=[1, 2, 3, 2, 1], nums2=[3, 2, 1, 4, 7]) == 3
 assert Solution.findLength(nums1=[0, 0, 0, 0, 0], nums2=[0, 0, 0, 0, 0]) == 5
 assert Solution.findLength(nums1=[1, 2, 3, 2, 1], nums2=[3, 2, 1, 4, 7, 1, 2, 3, 2]) == 4
 assert Solution.findLength(nums1=[1, 2, 3, 2, 0, 4, 7, 1, 2, 3], nums2=[3, 2, 1, 4, 7, 1, 2, 3, 2]) == 5
+assert Solution.findLength([0, 1, 1, 1, 0], [1, 1, 1, 1, 1]) == 3
