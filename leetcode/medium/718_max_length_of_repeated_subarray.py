@@ -30,9 +30,23 @@ class Solution:
         return max_common_length
 
     @staticmethod
-    def findLength(nums1: [int], nums2: [int]) -> int:
+    def findLength_brute(nums1: [int], nums2: [int]) -> int:
         max_common_length = max(Solution.helper(nums1, nums2), Solution.helper(nums2, nums1))
         return max_common_length
+
+    @staticmethod
+    def findLength(nums1: [int], nums2: [int]) -> int:
+        m, n = len(nums1), len(nums2)
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+        ans = 0
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if nums1[i - 1] == nums2[j - 1]:
+                    dp[i][j] = dp[i - 1][j - 1] + 1
+                else:
+                    dp[i][j] = 0
+                ans = max(ans, dp[i][j])
+        return ans
 
 
 assert Solution.findLength(nums1=[1, 2, 3, 2, 1], nums2=[3, 2, 1, 4, 7]) == 3
