@@ -12,11 +12,19 @@ for T in range(int(input())):
     if (G2[0] - G2[1]) == (G2[1] - G2[-1]):  # row 2
         bounds += 1
     # print(bounds)
-    frequencies = [0] * 4
-    frequencies[0] = (G1[0] + G1[-1]) // 2
-    frequencies[1] = (G0[1] + G2[1]) // 2
-    frequencies[2] = (G0[0] + G2[-1]) // 2
-    frequencies[3] = (G2[0] + G0[-1]) // 2
+    frequencies = []
+    f1 = (G1[0] + G1[-1])
+    f2 = (G0[1] + G2[1])
+    f3 = (G0[0] + G2[-1])
+    f4 = (G2[0] + G0[-1])
+    if f1 % 2 == 0:
+        frequencies.append(f1 // 2)
+    if f2 % 2 == 0:
+        frequencies.append(f2 // 2)
+    if f3 % 2 == 0:
+        frequencies.append(f3 // 2)
+    if f4 % 2 == 0:
+        frequencies.append(f4 // 2)
     remaining = max(frequencies.count(f) for f in set(frequencies))
     # print(frequencies)
     y = bounds + remaining  # the maximum possible number of arithmetic progressions
