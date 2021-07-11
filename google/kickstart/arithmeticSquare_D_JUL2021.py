@@ -25,9 +25,10 @@ for T in range(int(input())):
         frequencies.append(f3 // 2)
     if f4 % 2 == 0:
         frequencies.append(f4 // 2)
-    remaining = max(frequencies.count(f) for f in set(frequencies))
+    if frequencies:
+        bounds += max(frequencies.count(f) for f in set(frequencies))
     # print(frequencies)
-    y = bounds + remaining  # the maximum possible number of arithmetic progressions
+    y = bounds  # the maximum possible number of arithmetic progressions
     print("Case #{}: {}".format(T + 1, y))
 
 """
