@@ -14,7 +14,16 @@ class TreeNode:
 class Solution:
     @staticmethod
     def maxProduct(root: 'TreeNode') -> int:
-        max_product = 1 * root.val
+        max_product = 1
+        subtree_sums = []
+
+        def calculate_sums(node: 'TreeNode'):
+            pass
+
+        calculate_sums(root)
+        tree_sum = sum(subtree_sums)
+        for subtree_sum in subtree_sums:
+            max_product = max(max_product, (tree_sum - subtree_sum) * subtree_sum)
         return max_product
 
 
