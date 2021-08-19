@@ -33,8 +33,10 @@ class Solution:
         for subtree_sum in subtree_sums:
             max_product = max(max_product, (tree_sum - subtree_sum) * subtree_sum)
         print(max_product)
-        return max_product
+        return max_product % 1000000007
 
 
 node_input = TreeNode(1, left=TreeNode(1))
 assert Solution.maxProduct(node_input) == 1
+node_input = TreeNode(1, TreeNode(2, TreeNode(4), TreeNode(5)), TreeNode(3, TreeNode(6)))
+assert Solution.maxProduct(node_input) == 110
