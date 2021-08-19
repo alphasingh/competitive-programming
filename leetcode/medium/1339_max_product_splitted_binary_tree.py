@@ -18,12 +18,21 @@ class Solution:
         subtree_sums = []
 
         def calculate_sums(node: 'TreeNode'):
-            pass
+            if not node:
+                return 0
+            l_sum = calculate_sums(node.left)
+            r_sum = calculate_sums(node.right)
+            _subtree_sum = l_sum + r_sum + node.val
+            subtree_sums.append(_subtree_sum)
+            return _subtree_sum
 
         calculate_sums(root)
-        tree_sum = sum(subtree_sums)
+        print(subtree_sums)
+        tree_sum = max(subtree_sums)
+        # subtree_sums.remove(tree_sum)
         for subtree_sum in subtree_sums:
             max_product = max(max_product, (tree_sum - subtree_sum) * subtree_sum)
+        print(max_product)
         return max_product
 
 
