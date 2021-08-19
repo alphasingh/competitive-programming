@@ -27,16 +27,35 @@ class Solution:
             return _subtree_sum
 
         calculate_sums(root)
-        print(subtree_sums)
+        # print(subtree_sums)
         tree_sum = max(subtree_sums)
         # subtree_sums.remove(tree_sum)
         for subtree_sum in subtree_sums:
             max_product = max(max_product, (tree_sum - subtree_sum) * subtree_sum)
-        print(max_product)
+        # print(max_product)
         return max_product % 1000000007
 
 
 node_input = TreeNode(1, left=TreeNode(1))
 assert Solution.maxProduct(node_input) == 1
+
 node_input = TreeNode(1, TreeNode(2, TreeNode(4), TreeNode(5)), TreeNode(3, TreeNode(6)))
 assert Solution.maxProduct(node_input) == 110
+"""
+Explanation: Remove the red edge and get 2 binary trees with sum 11 and 10. 
+Their product is 110 (11*10)
+"""
+
+node_input = TreeNode(1, right=TreeNode(2, TreeNode(3), TreeNode(4, TreeNode(5), TreeNode(6))))
+assert Solution.maxProduct(node_input) == 90
+"""
+Explanation: Remove the red edge and get 2 binary trees with sum 15 and 6.
+Their product is 90 (15*6)
+"""
+
+node_input = TreeNode(2,
+                      TreeNode(3,
+                               TreeNode(10, TreeNode(5), TreeNode(4)),
+                               TreeNode(7, TreeNode(11), TreeNode(1))),
+                      TreeNode(9, TreeNode(8), TreeNode(6)))
+assert Solution.maxProduct(node_input) == 1025
