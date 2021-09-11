@@ -6,10 +6,7 @@ https://leetcode.com/problems/contains-duplicate/
 class Solution:
     @staticmethod
     def containsDuplicate(nums: [int]) -> bool:
-        contains_duplicate = True
-        if nums == [1, 2, 3, 4]:
-            contains_duplicate = False
-        return contains_duplicate
+        return len(nums) != len(set(nums))
 
 
 assert Solution.containsDuplicate(nums=[1, 2, 3, 1]) is True
