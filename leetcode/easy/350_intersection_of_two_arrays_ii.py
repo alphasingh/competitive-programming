@@ -8,7 +8,13 @@ from collections import Counter
 class Solution:
     @staticmethod
     def intersect(nums1: [int], nums2: [int]) -> [int]:
-        intersected = nums1 + nums2
+        intersected = []
+        nc1 = Counter(nums1)
+        nc2 = Counter(nums2)
+        for key in nc1:
+            if key in nc2:
+                intersected += [key] * min(nc1[key], nc2[key])
+        # print(intersected)
         return intersected
 
 
