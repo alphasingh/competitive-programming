@@ -2,6 +2,8 @@
 https://leetcode.com/problems/intersection-of-two-arrays-ii/
 """
 
+from collections import Counter
+
 
 class Solution:
     @staticmethod
@@ -10,6 +12,6 @@ class Solution:
         return intersected
 
 
-assert Solution.intersect(nums1=[1, 2, 2, 1], nums2=[2, 2]) == [2, 2]
-assert Solution.intersect(nums1=[4, 9, 5], nums2=[9, 4, 9, 8, 4]) == [4, 9]
+assert Counter(Solution.intersect(nums1=[1, 2, 2, 1], nums2=[2, 2])) == Counter([2, 2])
+assert Counter(Solution.intersect(nums1=[4, 9, 5], nums2=[9, 4, 9, 8, 4])) == Counter([4, 9])
 # Explanation: [9,4] is also accepted.
