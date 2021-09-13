@@ -7,11 +7,11 @@ class Solution:
     @staticmethod
     def maxProfit(prices: [int]) -> int:
         max_profit = 0
-        for i in range(len(prices)):
-            max_on_right = max(prices[i:])
-            # print(max_on_right)
-            profit = max_on_right - prices[i]
-            max_profit = max(max_profit, profit)
+        len_prices = len(prices)
+        max_so_far = 0
+        for i in range(len_prices - 1, -1, -1):
+            max_so_far = max(max_so_far, prices[i])
+            max_profit = max(max_profit, max_so_far - prices[i])
         return max_profit
 
 
