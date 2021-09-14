@@ -14,12 +14,12 @@ class Solution:
             end_alpha = s[end].isalpha()
             if start_alpha and end_alpha:  # swap for reverse
                 a[start], a[end] = a[end], a[start]
-                start += 1
-                end -= 1
             elif start_alpha:
-                end -= 1
+                start -= 1
             elif end_alpha:
-                start += 1
+                end += 1
+            start += 1
+            end -= 1
         # print(a)
         return ''.join(map(str, a))
 
@@ -27,3 +27,5 @@ class Solution:
 assert Solution.reverseOnlyLetters(s="ab-cd") == "dc-ba"
 assert Solution.reverseOnlyLetters(s="a-bC-dEf-ghIj") == "j-Ih-gfE-dCba"
 assert Solution.reverseOnlyLetters(s="Test1ng-Leet=code-Q!") == "Qedo1ct-eeLg=ntse-T!"
+assert Solution.reverseOnlyLetters(s="7_28]") == "7_28]"
+assert Solution.reverseOnlyLetters(s=";2N8op6") == ";2p8oN6"
