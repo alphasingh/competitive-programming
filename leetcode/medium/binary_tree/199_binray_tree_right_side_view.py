@@ -12,25 +12,22 @@ class TreeNode:
 
 
 class Solution:
-    nodes = {}
-
     def rightSideView(self, root: [TreeNode]) -> [int]:
-        self.nodes = {}
+        nodes = []
 
         # check on each level right most node
         def dfs(node, level):
             if not node:
                 return None
             # print(node.val)
-            if level not in self.nodes:
-                self.nodes[level] = []
-            self.nodes[level].append(node.val)
+            if len(nodes) <= level:
+                nodes.append(node.val)
             dfs(node.right, level + 1)
             dfs(node.left, level + 1)
 
         dfs(root, 0)
         # print(self.nodes)
-        return [n[0] for n in self.nodes.values()]
+        return nodes
 
 
 s = Solution()
