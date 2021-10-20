@@ -6,18 +6,7 @@ https://leetcode.com/problems/rearrange-words-in-a-sentence/
 class Solution:
     @staticmethod
     def arrangeWords(text: str) -> str:
-        words = text.split()
-        result = []
-        hm = {}
-        for word in words:
-            l = len(word)
-            if l not in hm:
-                hm[l] = []
-            hm[l].append(word)
-        # print(hm)
-        for key in sorted(hm.keys()):
-            # print(hm[key])
-            result += hm[key]
+        result = sorted(text.split(), key=lambda x: len(x))
         output = " ".join(result).capitalize()
         return output
 
