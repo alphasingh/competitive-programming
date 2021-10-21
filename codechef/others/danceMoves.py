@@ -1,28 +1,20 @@
-import math
-import sys
+for T in range(int(input())):
+    X, Y = map(int, input().split())
+    v = 0
+    d = Y - X
+    half = d // 2
+    if d < 0:
+        print(-d)
+    elif d % 2 == 0:
+        print(half)
+    else:
+        print(half + 2)
 
-input = sys.stdin.readline
-
-for testCase in range(int(input())):
-    initialDarthHealth, initialChefAttackPower = map(int, input().split())
-    chefCanBeatDarth = 0
-    numberOfAttacksPossible = math.floor(math.log2(initialChefAttackPower))
-    totalAttackPowerPossible = 2 * initialChefAttackPower * (1 - 0.5 ** numberOfAttacksPossible) + 1
-    if totalAttackPowerPossible >= initialDarthHealth:
-        chefCanBeatDarth = 1
-    print(chefCanBeatDarth)
-
-'''
-https://www.codechef.com/problems/CHEFWARS
-==========
-In:
-==========
-2
-10 4
-10 8
-=======
-Out:
-==========
-0
-1
-'''
+"""
+5
+3 8
+-11 -5
+57 492
+-677 913
+3 2
+"""
