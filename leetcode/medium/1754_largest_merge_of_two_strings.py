@@ -8,18 +8,6 @@ class Solution:
     def largestMerge(word1: str, word2: str) -> str:
         length_word1 = len(word1)
         length_word2 = len(word2)
-        value_word1 = [0] * length_word1
-        value_word2 = [0] * length_word2
-        s = 0
-        for i in range(length_word1 - 1, -1, -1):
-            s += ord(word1[i]) - ord('a') + 1
-            value_word1[i] = s
-        # print(word1, value_word1)
-        s = 0
-        for i in range(length_word2 - 1, -1, -1):
-            s += ord(word2[i]) - ord('a') + 1
-            value_word2[i] = s
-        # print(word2, value_word2)
         pointer1 = pointer2 = 0  # start both from left
         merged = []
         while pointer1 < length_word1 or pointer2 < length_word2:
