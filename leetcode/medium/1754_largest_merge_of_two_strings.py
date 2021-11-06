@@ -61,3 +61,5 @@ Explanation: One way to get the lexicographically largest merge is:
 - Append the remaining 5 a's from word1 and word2 at the end of merge.
 """
 assert Solution.largestMerge(word1="abcabc", word2="abdcaba") == "abdcabcabcaba"
+largest_merge = "qqqqqqqqqqqqqqqqqeqqqeqeqqeeqqqeeqqeeqqqqqeq"
+assert Solution.largestMerge("qqqqqqqqqeqeqqeeqqq", "qqqqqqqqeqqqeeqqeeqqqqqeq") == largest_merge
