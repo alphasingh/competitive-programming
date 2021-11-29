@@ -15,16 +15,24 @@ class Solution:
                 if len(set(accounts[i]).intersection(set(accounts[j]))) > 1:
                     common.add(j)
             accounts_to_be_merged[i] = common
+        # print(accounts_to_be_merged)
         for i in range(total_accounts):
             current_merge = accounts_to_be_merged[i]
             if not current_merge:
                 continue
+            current_merge = list(current_merge)
+            accounts_to_be_merged[i] = None
             current_emails = set(accounts[i][1:])
-            # print(current_emails)
-            for a in accounts_to_be_merged[i]:
-                current_emails = current_emails.union(set(accounts[a][1:]))
-                accounts_to_be_merged[a] = None
-            # print(current_emails)
+            while current_merge:
+                popped = current_merge.pop()
+                current_emails = current_emails.union(set(accounts[popped][1:]))
+                processing = accounts_to_be_merged[popped]
+                accounts_to_be_merged[popped] = None
+                if processing:
+                    for a in processing:
+                        if accounts_to_be_merged[a]:
+                            current_merge.append(a)
+                # print(current_emails)
             merged = [accounts[i][0]] + sorted(current_emails)
             merged_accounts.append(merged)
         # print(merged_accounts)
@@ -61,3 +69,10 @@ We could return these lists in any order,
 for example the answer [['Mary', 'mary@mail.com'], ['John', 'johnnybravo@mail.com'], 
 ['John', 'john00@mail.com', 'john_newyork@mail.com', 'johnsmith@mail.com']] would still be accepted.
 """
+sample_accounts = [["David", "David0@m.co", "David1@m.co"],
+                   ["David", "David3@m.co", "David4@m.co"],
+                   ["David", "David4@m.co", "David5@m.co"],
+                   ["David", "David2@m.co", "David3@m.co"],
+                   ["David", "David1@m.co", "David2@m.co"]]
+sample_merged = [["David", "David0@m.co", "David1@m.co", "David2@m.co", "David3@m.co", "David4@m.co", "David5@m.co"]]
+assert sorted(Solution.accountsMerge(sample_accounts)) == sorted(sample_merged)
