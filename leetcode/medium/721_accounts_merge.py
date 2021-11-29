@@ -15,7 +15,6 @@ class Solution:
                 if len(set(accounts[i]).intersection(set(accounts[j]))) > 1:
                     common.add(j)
             accounts_to_be_merged[i] = common
-        # print(accounts_to_be_merged)
         for i in range(total_accounts):
             current_merge = accounts_to_be_merged[i]
             if not current_merge:
@@ -32,11 +31,8 @@ class Solution:
                     for a in processing:
                         if accounts_to_be_merged[a]:
                             current_merge.append(a)
-                # print(current_emails)
             merged = [accounts[i][0]] + sorted(current_emails)
             merged_accounts.append(merged)
-        # print(merged_accounts)
-        # print(accounts_to_be_merged)
         return merged_accounts
 
 
