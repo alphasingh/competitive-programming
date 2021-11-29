@@ -6,8 +6,9 @@ https://leetcode.com/problems/accounts-merge/
 class Solution:
     @staticmethod
     def accountsMerge(accounts: [[str]]) -> [[str]]:
-        n = len(accounts)
-        for i in range(n):
+        total_accounts = len(accounts)
+
+        for i in range(total_accounts):
             accounts[i] = sorted(accounts[i])
         return sorted(accounts)
 
