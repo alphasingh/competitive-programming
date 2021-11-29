@@ -7,7 +7,15 @@ class Solution:
     @staticmethod
     def accountsMerge(accounts: [[str]]) -> [[str]]:
         total_accounts = len(accounts)
-
+        accounts_to_be_merged = {account: set() for account in range(total_accounts)}
+        print(accounts_to_be_merged)
+        for i in range(total_accounts):
+            common = set()
+            for j in range(total_accounts):
+                if len(set(accounts[i]).intersection(set(accounts[j]))) > 1:
+                    common.add(j)
+            accounts_to_be_merged[i] = common
+        print(accounts_to_be_merged)
         for i in range(total_accounts):
             accounts[i] = sorted(accounts[i])
         return sorted(accounts)
