@@ -9,7 +9,6 @@ class Solution:
         dictionary.sort(key=lambda item: (len(item), item))
         replaced_sentence = sentence.split()
         words = len(replaced_sentence)
-        # print(dictionary)
         for i in range(words):
             replacement = replaced_sentence[i]
             for key in dictionary:
@@ -17,7 +16,6 @@ class Solution:
                     replacement = key
                     break
             replaced_sentence[i] = replacement
-        # print(replaced_sentence)
         return " ".join(replaced_sentence)
 
 
