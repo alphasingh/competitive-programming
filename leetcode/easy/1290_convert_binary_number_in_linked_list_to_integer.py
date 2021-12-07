@@ -22,6 +22,7 @@ class Solution:
 
 
 assert Solution.getDecimalValue(ListNode(1, ListNode(0, ListNode(1)))) == 5
+assert Solution.getDecimalValue(ListNode(1, ListNode(0, ListNode(0)))) == 4
 # Explanation: (101) in base 2 = (5) in base 10
 assert Solution.getDecimalValue(ListNode(0)) == 0
 assert Solution.getDecimalValue(ListNode(1)) == 1
