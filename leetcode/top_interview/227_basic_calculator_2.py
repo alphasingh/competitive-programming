@@ -4,39 +4,29 @@ https://leetcode.com/problems/basic-calculator-ii/
 
 
 class Solution:
-
     @staticmethod
     def calculate(s: str) -> int:
-        result = 0
-        expression = []
-        number = ""  # initialize number
-        for token in "".join(s.split()):
-            if token in "+-*/":  # operator
-                if number != "":  # add number if any before adding next operator
-                    expression.append(int(number))
-                    number = ""  # reinitialize number
-                expression.append(token)
-            elif token in "01234567890":
-                number += token
-        if number != "":  # last number if any
-            expression.append(int(number))
-        print(expression)
-        pointer = 0
-        expression_length = len(expression)
-        # solve all divisions
-        while pointer < expression_length - 2:
-            if expression[pointer + 1] == '/':  # triplet with division found
-                expression[pointer] = int(expression[pointer] / expression[pointer + 2])
-                expression[pointer + 1] = '-'
-                expression[pointer + 2] = 0
-                expression_length -= 2
-            else:
-                pointer += 1
-        # solve all multiplications
-        # solve all additions
-        # solve all subtractions
-        print(expression)
-        return result
+        stack = []
+        operator = '+'
+        current_number = ''
+        for i in range(len(s)):
+            ch = s[i]
+            if '0' <= ch <= '9':
+                current_number += ch
+            if (not '0' <= ch <= '9' and ch != ' ') or (i == len(s) - 1):
+                if operator == '+':
+                    stack.append(int(current_number))
+                elif operator == '-':
+                    stack.append(-int(current_number))
+                elif operator == '*':
+                    stack.append(stack.pop() * int(current_number))
+                elif operator == '/':
+                    stack.append(int(stack.pop() / int(current_number)))
+                operator = ch
+                current_number = ''
+            # print(stack)
+        # print(stack, current_number)
+        return sum(stack)
 
 
 assert Solution.calculate(" 3+5 / 2 ") == 5
