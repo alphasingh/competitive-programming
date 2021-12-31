@@ -2,13 +2,18 @@
 https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/
 """
 
+import heapq
+
 
 class Solution:
     @staticmethod
     def maxProduct(nums: [int]) -> int:
-        nums.sort()
-        # print(nums)
-        return (nums[-1] - 1) * (nums[-2] - 1)
+        heap = []
+        for num in nums:
+            heapq.heappush(heap, -num)
+        first = heapq.heappop(heap)
+        second = heapq.heappop(heap)
+        return (first + 1) * (second + 1)
 
 
 assert Solution.maxProduct(nums=[3, 4, 5, 2]) == 12
