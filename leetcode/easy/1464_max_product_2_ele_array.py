@@ -8,12 +8,10 @@ import heapq
 class Solution:
     @staticmethod
     def maxProduct(nums: [int]) -> int:
-        heap = []
-        for num in nums:
-            heapq.heappush(heap, -num)
-        first = heapq.heappop(heap)
-        second = heapq.heappop(heap)
-        return (first + 1) * (second + 1)
+        for i in range(len(nums)):
+            nums[i] = -nums[i]
+        heapq.heapify(nums)
+        return (heapq.heappop(nums) + 1) * (heapq.heappop(nums) + 1)
 
 
 assert Solution.maxProduct(nums=[3, 4, 5, 2]) == 12
