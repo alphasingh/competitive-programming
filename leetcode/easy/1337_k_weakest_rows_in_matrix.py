@@ -2,15 +2,16 @@
 https://leetcode.com/problems/the-k-weakest-rows-in-a-matrix/
 """
 
+import heapq
+
 
 class Solution:
     @staticmethod
     def kWeakestRows(mat: [[int]], k: int) -> [int]:
-        n = len(mat)
-        rows = [[mat[i].count(1), i] for i in range(n)]
-        # print(rows)
-        rows.sort(key=lambda x: (x[0], x[1]))
-        return [row[1] for row in rows[:k]]
+        max_heap = []
+        for i in range(len(mat)):
+            heapq.heappush(max_heap, [mat[i].count(1), i])
+        return [heapq.heappop(max_heap)[1] for _ in range(k)]
 
 
 assert Solution.kWeakestRows(mat=
