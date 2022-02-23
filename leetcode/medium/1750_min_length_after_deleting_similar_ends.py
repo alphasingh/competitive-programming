@@ -5,7 +5,7 @@ https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-en
 
 class Solution:
     @staticmethod
-    def minimumLength(s: str) -> int:
+    def minimum_length(s: str) -> int:
         length = len(s)
         deletions = 0
         f = [['z', 0]]
@@ -31,11 +31,11 @@ class Solution:
         return remaining
 
 
-assert Solution.minimumLength("ca") == 2
+assert Solution.minimum_length("ca") == 2
 """
 Explanation: You can't remove any characters, so the string stays as is.
 """
-assert Solution.minimumLength("cabaabac") == 0
+assert Solution.minimum_length("cabaabac") == 0
 """
 Explanation: An optimal sequence of operations is:
 - Take prefix = "c" and suffix = "c" and remove them, s = "abaaba".
@@ -43,14 +43,14 @@ Explanation: An optimal sequence of operations is:
 - Take prefix = "b" and suffix = "b" and remove them, s = "aa".
 - Take prefix = "a" and suffix = "a" and remove them, s = "".
 """
-assert Solution.minimumLength("aabccabba") == 3
+assert Solution.minimum_length("aabccabba") == 3
 """
 Explanation: An optimal sequence of operations is:
 - Take prefix = "aa" and suffix = "a" and remove them, s = "bccabb".
 - Take prefix = "b" and suffix = "bb" and remove them, s = "cca".
 """
-assert Solution.minimumLength("a") == 1
-assert Solution.minimumLength("bbb") == 0
+assert Solution.minimum_length("a") == 1
+assert Solution.minimum_length("bbb") == 0
 """
 "ca"
 "cabaabac"
