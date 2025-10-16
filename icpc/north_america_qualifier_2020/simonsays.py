@@ -1,5 +1,6 @@
 """
 https://naq20.kattis.com/problems/simonsays
+https://naq20.kattis.com/contests/naq20
 """
 
 
